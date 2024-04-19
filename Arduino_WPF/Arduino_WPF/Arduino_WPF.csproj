@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\latze\OneDrive\Desktop\Schule\HTL_Rankweil\5.Semester\FSST\Arduino_WPF\Arduino_WPF\Arduino_WPF\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\latze\OneDrive\Desktop\Schule\HTL_Rankweil\5.Semester\FSST\Arduino_WPF\Arduino_WPF\Arduino_WPF\.editorconfig" />
+  </ItemGroup>
+
+</Project>
