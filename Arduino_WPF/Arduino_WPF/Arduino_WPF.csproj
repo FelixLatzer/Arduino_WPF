@@ -16,4 +16,16 @@
     <None Include="C:\Users\latze\OneDrive\Desktop\Schule\HTL_Rankweil\5.Semester\FSST\Arduino_WPF\Arduino_WPF\Arduino_WPF\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Iot.Device.Bindings" Version="3.1.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="System.Device.Gpio" Version="3.1.0" />
+  </ItemGroup>
+
 </Project>
