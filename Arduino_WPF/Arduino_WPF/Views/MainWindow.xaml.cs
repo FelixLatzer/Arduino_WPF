@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Arduino_WPF.ViewModels;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using System.Windows;
@@ -21,5 +22,12 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        // instanciate viewmodel and set the context to it
+        MainWindowViewModel viewModel = new();
+        this.DataContext = viewModel;
     }
+
+    // here is the code behind
+    // MVVM tries to keep this area relatively clean (DataBinding)
 }
