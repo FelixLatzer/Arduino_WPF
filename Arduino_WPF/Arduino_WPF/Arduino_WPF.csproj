@@ -23,4 +23,8 @@
     <PackageReference Include="System.Device.Gpio" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\CustomControlls\" />
+  </ItemGroup>
+
 </Project>
