@@ -31,4 +31,27 @@ public class COM(int baudrate, string port, Parity parity, int dataBits, StopBit
             SerialPort.Close();
         }
     }
+
+    public static string[] ListOpenPorts()
+    {
+        return SerialPort.GetPortNames();
+    }
+
+    public void SetBaudrate(int baudrate)
+    {
+        Baudrate = baudrate;
+        SerialPort.BaudRate = baudrate;
+    }
+
+    public void SetParity(Parity parity)
+    {
+        Parity = parity;
+        SerialPort.Parity = parity;
+    }
+
+    public void SetDataBits(int dataBits)
+    {
+        DataBits = dataBits;
+        SerialPort.DataBits = dataBits;
+    }
 }

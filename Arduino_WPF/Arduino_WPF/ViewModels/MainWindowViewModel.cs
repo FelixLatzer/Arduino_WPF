@@ -1,52 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Arduino_WPF.Models;
+﻿using Arduino_WPF.Models;
 using Arduino_WPF.Utils;
-using Microsoft.Extensions.Logging;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
-
 
 public class MainWindowViewModel : BaseViewModel
 {
     public ObservableCollection<CustomPinViewModel> Pins { get; private set; }
-    public COM? COM { get; private set; }
+    public ObservableCollection<string> AvailablePorts { get; private set; }
+    private COM? _com;
+
+    private string _selectedPort;
+    public string SelectedPort
+    {
+        get => _selectedPort;
+        set
+        {
+            if (_selectedPort != value)
+            {
+                _selectedPort = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public COM COM
+    {
+        get => _com!;
+        private set
+        {
+            if (_com != value)
+            {
+                _com = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     public ICommand OpenCOMCommand { get; }
     public ICommand CloseCOMCommand { get; }
     public ICommand RefreshPinsCommand { get; }
+    public ICommand ListPortsCommand { get; }
 
     public MainWindowViewModel()
     {
-        Pins = [];
+        Pins = new ObservableCollection<CustomPinViewModel>();
+        AvailablePorts = new ObservableCollection<string>();
         OpenCOMCommand = new RelayCommand(OpenCOM);
         CloseCOMCommand = new RelayCommand(CloseCOM);
         RefreshPinsCommand = new RelayCommand(RefreshPins);
+        ListPortsCommand = new RelayCommand(ListPorts);
     }
 
     private void OpenCOM()
     {
-        var ports = System.IO.Ports.SerialPort.GetPortNames();
-
-        foreach (var port in ports)
+        if (!string.IsNullOrEmpty(SelectedPort))
         {
-            COM = new COM(9600, port, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
+            COM = new COM(9600, SelectedPort, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
+
             try
             {
                 COM.OpenConnection();
-                break;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                COM = null;
+                MessageBox.Show(ex.Message);
             }
+        }
+        else
+        {
+           MessageBox.Show("Please select a port first.");
         }
     }
 
@@ -57,12 +82,10 @@ public class MainWindowViewModel : BaseViewModel
             try
             {
                 COM.CloseConnection();
-            
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                COM = null;
+                MessageBox.Show(ex.Message);
             }
         }
     }
@@ -72,6 +95,15 @@ public class MainWindowViewModel : BaseViewModel
         foreach (var pinViewModel in Pins)
         {
             pinViewModel.UpdateState();
+        }
+    }
+
+    private void ListPorts()
+    {
+        AvailablePorts.Clear();
+        foreach (var port in COM.ListOpenPorts())
+        {
+            AvailablePorts.Add(port);
         }
     }
 
