@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Arduino_WPF"
+        xmlns:Pin ="clr-namespace:Arduino_WPF.Views.CustomControlls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <Pin:CustomPin Grid.Row="1"></Pin:CustomPin>
+        <TextBox x:Name="TextBoxMainWindow" Grid.Row="2" Height="50" Width="200"></TextBox>
     </Grid>
 </Window>
