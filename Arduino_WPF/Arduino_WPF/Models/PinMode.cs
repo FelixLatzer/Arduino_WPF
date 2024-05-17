@@ -5,8 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Arduino_WPF.Models;
-internal enum PinMode
+
+public enum PinMode
 {
     INPUT,
     OUTPUT
+}
+
+public enum State
+{
+    LOW,
+    HIGH
 }
