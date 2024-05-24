@@ -1,5 +1,4 @@
 ﻿using Arduino_WPF.ViewModels;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using System.Windows;
