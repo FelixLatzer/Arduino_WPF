@@ -44,7 +44,7 @@ public class CustomPinViewModel(int id, PinMode pinMode, State state) : BaseView
         {
             if (_pin.State != value)
             {
-                _pin.UpdateState(value);
+                _pin.WritePinData(value, _pin.PinMode);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(LastRefresh));
             }
