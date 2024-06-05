@@ -1,4 +1,5 @@
 ﻿using Arduino_WPF.Models;
+using Arduino_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,25 +21,15 @@ namespace Arduino_WPF.Views.CustomControlls;
 /// </summary>
 public partial class CustomPin : UserControl
 {
-    public string zipfl { get; set; }
+    public required int Id { get; init; }
+    private PinMode _pinMode = PinMode.INPUT;
+    private State _state = State.LOW;
 
     public CustomPin()
     {
         InitializeComponent();
 
-        TextBoxPinMode.Text = PinMode.INPUT.ToString();
-    }
-
-    private void ButtonTogglePinMode_Click(object sender, RoutedEventArgs e)
-    {
-        if(TextBoxPinMode.Text == PinMode.INPUT.ToString())
-        {
-            TextBoxPinMode.Text = PinMode.OUTPUT.ToString();
-            return;
-        }
-
-        TextBoxPinMode.Text = PinMode.INPUT.ToString();
-
-        zipfl = TextBoxPinMode.Text;
+        var viewModel = new CustomPinViewModel(Id, _pinMode, _state);
+        this.DataContext = viewModel;
     }
 }

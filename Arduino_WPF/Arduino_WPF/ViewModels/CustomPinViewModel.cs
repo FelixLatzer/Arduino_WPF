@@ -1,57 +1,72 @@
 ﻿using Arduino_WPF.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Arduino_WPF.Utils;
+using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
 
-public class CustomPinViewModel(int id, PinMode pinMode, State state) : BaseViewModel
+public class CustomPinViewModel : BaseViewModel
 {
-    private readonly Pin _pin = new(id, pinMode, state);
-
-    public int ID
+    private int _id;
+    public int Id
     {
-        get => _pin.ID;
+        get
+        {
+            return _id;
+        }
         set
         {
-            if (_pin.ID != value)
-            {
-                _pin.ID = value;
-                OnPropertyChanged();
-            }
+            _id = value;
+            OnPropertyChanged();
         }
     }
 
-    public PinMode PinMode
+    private int _idCopy;
+    public int IdCopy
     {
-        get => _pin.PinMode;
+        get
+        {
+            return _idCopy;
+        }
         set
         {
-            if (_pin.PinMode != value)
-            {
-                _pin.PinMode = value;
-                OnPropertyChanged();
-            }
+            _idCopy = value;
+            Id = value;
+            OnPropertyChanged();
         }
     }
 
-    public State State
-    {
-        get => _pin.State;
+    private PinMode _pinMode;
+    public PinMode PinMode 
+    { 
+        get
+        {
+            return _pinMode;
+        }
         set
         {
-            if (_pin.State != value)
-            {
-                _pin.WritePinData(value, _pin.PinMode);
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(LastRefresh));
-            }
+            _pinMode = value;
+            OnPropertyChanged();
         }
     }
+    public State State { get; set; }
+    public ICommand TogglePinModeCommand { get; set; }
 
+    private readonly Pin _pin;
+
+    CustomPinViewModel() { }
+
+    public CustomPinViewModel(int id, PinMode pinMode, State state)
+    {
+        _pin = new(id, pinMode, state);
+        TogglePinModeCommand = new RelayCommand(TogglePinMode);
+    }
+    
     public DateTime LastRefresh => _pin.LastRefresh;
+
+    private void TogglePinMode()
+    {
+        PinMode = PinMode == PinMode.OUTPUT ? PinMode.INPUT : PinMode.OUTPUT;
+    }
 
     public void UpdateState()
     {
