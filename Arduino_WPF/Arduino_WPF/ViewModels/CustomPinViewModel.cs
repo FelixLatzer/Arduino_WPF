@@ -13,6 +13,11 @@ public class CustomPinViewModel : BaseViewModel
 {
     private readonly Pin _pin;
 
+    public string Titel 
+    {
+        get => $"Pin {_pin.ID}";
+    }
+
     public int ID
     {
         get => _pin.ID;
@@ -55,14 +60,16 @@ public class CustomPinViewModel : BaseViewModel
 
     public DateTime LastRefresh => _pin.LastRefresh;
 
-    ICommand TogglePinModeCommand;
-    ICommand ToggleStateCommand;
+    public ICommand TogglePinModeCommand;
+    public ICommand ToggleStateCommand;
+    public ICommand OnClickExitButtonCommand;
 
-    public CustomPinViewModel(int iD, PinMode pinMode, State state)
+    public CustomPinViewModel(int iD, PinMode pinMode, State state, Action OnClickExitButton)
     {
         _pin = new(iD, pinMode, state);
         TogglePinModeCommand = new RelayCommand(TogglePinMode);
         ToggleStateCommand = new RelayCommand(ToggleState);
+        OnClickExitButtonCommand = new RelayCommand(OnClickExitButton);
     }
 
     private void TogglePinMode()
