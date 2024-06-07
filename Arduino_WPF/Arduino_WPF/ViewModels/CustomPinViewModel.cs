@@ -1,15 +1,17 @@
 ﻿using Arduino_WPF.Models;
+using Arduino_WPF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
 
-public class CustomPinViewModel(int id, PinMode pinMode, State state) : BaseViewModel
+public class CustomPinViewModel : BaseViewModel
 {
-    private readonly Pin _pin = new(id, pinMode, state);
+    private readonly Pin _pin;
 
     public int ID
     {
@@ -53,9 +55,23 @@ public class CustomPinViewModel(int id, PinMode pinMode, State state) : BaseView
 
     public DateTime LastRefresh => _pin.LastRefresh;
 
-    public void UpdateState()
+    ICommand TogglePinModeCommand;
+    ICommand ToggleStateCommand;
+
+    public CustomPinViewModel(int iD, PinMode pinMode, State state)
     {
-        // TODO: JUST A TRYOUT REPLACE WITH ACTUAL LOGIC!!!!
+        _pin = new(iD, pinMode, state);
+        TogglePinModeCommand = new RelayCommand(TogglePinMode);
+        ToggleStateCommand = new RelayCommand(ToggleState);
+    }
+
+    private void TogglePinMode()
+    {
+        PinMode = PinMode == PinMode.INPUT ? PinMode.OUTPUT : PinMode.INPUT;
+    }
+
+    public void ToggleState()
+    {
         State = State == State.LOW ? State.HIGH : State.LOW;
     }
 }
