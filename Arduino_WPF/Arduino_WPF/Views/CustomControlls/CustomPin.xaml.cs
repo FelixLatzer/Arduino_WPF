@@ -26,7 +26,8 @@ public partial class CustomPin : UserControl
     {
         InitializeComponent();
 
-        viewModel = new(0, PinMode.INPUT, State.LOW);
+        // TODO: find solution so no values are needed for ctor
+        viewModel = new(0, PinMode.Input, State.Low);
         this.DataContext = viewModel;
     }
 }
