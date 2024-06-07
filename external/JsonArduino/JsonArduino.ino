@@ -13,7 +13,7 @@ void setup()
   }
 
   Serial.println("Waiting for JSON config...");
-  
+
   // Wait until we receive a valid JSON
   while (!Serial.available())
   {
@@ -31,7 +31,7 @@ void setup()
   // Parse JSON
   StaticJsonDocument<capacity> doc;
   DeserializationError error = deserializeJson(doc, jsonBuffer);
-  
+
   if (error)
   {
     Serial.print(F("deserializeJson() failed: "));
@@ -74,6 +74,40 @@ void setup()
 
 void loop()
 {
-  Serial.println("Hello world!");
-  delay(1000); 
+  // Check if there's data to read from the serial port
+  if (Serial.available())
+  {
+    // Read the incoming data
+    int index = 0;
+    while (Serial.available() && index < sizeof(jsonBuffer) - 1)
+    {
+      jsonBuffer[index++] = Serial.read();
+    }
+    jsonBuffer[index] = '\0'; // Null-terminate the JSON string
+
+    // Check if it's a request for the current configuration
+    if (strcmp(jsonBuffer, "GET_CONFIG") == 0)
+    {
+      // Create a JSON document to hold the pin configuration
+      StaticJsonDocument<capacity> doc;
+
+      // Add each pin's configuration to the JSON document
+      for (int pin = 0; pin < 20; ++pin) // Assuming pins 0 to 19
+      {
+        JsonObject pinConfig = doc.createNestedObject(String(pin));
+        pinConfig["mode"] = "UNKNOWN"; // Replace with actual mode retrieval logic
+        pinConfig["state"] = digitalRead(pin); // Read the current state of the pin
+      }
+
+      // Serialize the JSON document to a string
+      String jsonString;
+      serializeJson(doc, jsonString);
+
+      // Send the JSON string over the serial port
+      Serial.println(jsonString);
+    }
+  }
+
+  // Other loop logic here
+  delay(1000); // Placeholder delay
 }

@@ -26,18 +26,18 @@ public partial class CustomPin : UserControl
     {
         InitializeComponent();
 
-        TextBoxPinMode.Text = PinMode.INPUT.ToString();
+        TextBoxPinMode.Text = PinMode.Input.ToString();
     }
 
     private void ButtonTogglePinMode_Click(object sender, RoutedEventArgs e)
     {
-        if(TextBoxPinMode.Text == PinMode.INPUT.ToString())
+        if(TextBoxPinMode.Text == PinMode.Input.ToString())
         {
-            TextBoxPinMode.Text = PinMode.OUTPUT.ToString();
+            TextBoxPinMode.Text = PinMode.Output.ToString();
             return;
         }
 
-        TextBoxPinMode.Text = PinMode.INPUT.ToString();
+        TextBoxPinMode.Text = PinMode.Input.ToString();
 
         zipfl = TextBoxPinMode.Text;
     }

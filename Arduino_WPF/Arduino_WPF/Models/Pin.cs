@@ -6,30 +6,58 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Arduino_WPF.Models;
-
-public class Pin(int id, PinMode pinMode, State state)
+namespace Arduino_WPF.Models
 {
-    public int ID { get; set; } = id;
-    public PinMode PinMode { get; set; } = pinMode;
-    public State State { get; set; } = state;
-    [JsonIgnore]
-    public DateTime LastRefresh { get; set; } = DateTime.Now;
-
-    public void WritePinData(State newState, PinMode newPinMode)
+    public class Pin
     {
-        State = newState;
-        LastRefresh = DateTime.Now;
-        string json = JsonSerializer.Serialize(this);
-    }
+        public int ID { get; set; }
+        public PinMode PinMode { get; set; }
+        public State State { get; set; }
+        [JsonIgnore]
+        public DateTime LastRefresh { get; set; }
 
-    // TODO: add null check!!!
-    public void ReadPinData(string json)
-    {
-        Pin pin = JsonSerializer.Deserialize<Pin>(json);
-        ID = pin.ID;
-        PinMode = pin.PinMode;
-        State = pin.State;
-        LastRefresh = pin.LastRefresh;
+        public Pin(int id, PinMode pinMode, State state)
+        {
+            ID = id;
+            PinMode = pinMode;
+            State = state;
+            LastRefresh = DateTime.Now;
+        }
+
+        public string WritePinData(State newState, PinMode newPinMode)
+        {
+            if (newState == State.Unknown)
+            {
+                throw new ArgumentNullException(nameof(newState), "newState cannot be null");
+            }
+            if (newPinMode == PinMode.Unknown)
+            {
+                throw new ArgumentNullException(nameof(newPinMode), "newPinMode cannot be null");
+            }
+
+            State = newState;
+            PinMode = newPinMode;
+            LastRefresh = DateTime.Now;
+            string json = JsonSerializer.Serialize(this);
+
+            return json;
+        }
+
+        public void ReadPinData(string json)
+        {
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                throw new ArgumentNullException(nameof(json), "json cannot be null or empty");
+            }
+
+            Pin pin = JsonSerializer.Deserialize<Pin>(json);
+            if (pin != null)
+            {
+                ID = pin.ID;
+                PinMode = pin.PinMode;
+                State = pin.State;
+                LastRefresh = pin.LastRefresh;
+            }
+        }
     }
 }

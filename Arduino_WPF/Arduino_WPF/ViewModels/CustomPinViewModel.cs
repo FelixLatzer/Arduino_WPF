@@ -56,6 +56,6 @@ public class CustomPinViewModel(int id, PinMode pinMode, State state) : BaseView
     public void UpdateState()
     {
         // TODO: JUST A TRYOUT REPLACE WITH ACTUAL LOGIC!!!!
-        State = State == State.LOW ? State.HIGH : State.LOW;
+        State = State == State.Low ? State.High : State.Low;
     }
 }
