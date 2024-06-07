@@ -22,11 +22,11 @@ namespace Arduino_WPF.Views.CustomControlls;
 public partial class CustomPin : UserControl
 {
     public CustomPinViewModel viewModel;
-    public CustomPin(int id, PinMode pinMode = PinMode.INPUT, State state = State.LOW)
+    public CustomPin()
     {
         InitializeComponent();
 
-        viewModel = new(id, pinMode, state);
+        viewModel = new(0, PinMode.INPUT, State.LOW);
         this.DataContext = viewModel;
     }
 }
