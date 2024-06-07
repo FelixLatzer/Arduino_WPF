@@ -18,14 +18,18 @@ namespace Arduino_WPF;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private MainWindowViewModel _viewModel;
+
     public MainWindow()
     {
         InitializeComponent();
 
         // instanciate viewmodel and set the context to it
-        MainWindowViewModel viewModel = new();
-        this.DataContext = viewModel;
+        _viewModel = new();
+        this.DataContext = _viewModel;
     }
+
+
 
     // here is the code behind
     // MVVM tries to keep this area relatively clean (DataBinding)

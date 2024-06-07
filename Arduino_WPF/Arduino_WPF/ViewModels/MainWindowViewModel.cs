@@ -1,7 +1,9 @@
 ﻿using Arduino_WPF.Models;
 using Arduino_WPF.Utils;
+using Arduino_WPF.Views.CustomControlls;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
@@ -43,6 +45,7 @@ public class MainWindowViewModel : BaseViewModel
     public ICommand CloseCOMCommand { get; }
     public ICommand RefreshPinsCommand { get; }
     public ICommand ListPortsCommand { get; }
+    public ICommand AddNewPin { get; }
 
     public MainWindowViewModel()
     {
@@ -52,6 +55,12 @@ public class MainWindowViewModel : BaseViewModel
         CloseCOMCommand = new RelayCommand(CloseCOM);
         RefreshPinsCommand = new RelayCommand(RefreshPins);
         ListPortsCommand = new RelayCommand(ListPorts);
+        AddNewPin = new RelayCommand(AddCustomPin);
+    }
+
+    private void AddCustomPin()
+    {
+        Pins.Add(new(1, PinMode.OUTPUT, State.LOW));
     }
 
     private void OpenCOM()
