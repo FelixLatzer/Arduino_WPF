@@ -7,28 +7,41 @@ using System.Threading.Tasks;
 
 namespace Arduino_WPF.Models;
 
-public class COM(int baudrate, string port, Parity parity, int dataBits, StopBits stopBits)
+public class COM
 {
-    public int Baudrate { get; set; } = baudrate;
-    public string Port { get; set; } = port;
-    private SerialPort SerialPort { get; set; } = new SerialPort(port, baudrate, parity, dataBits, stopBits);
-    public Parity Parity { get; set; } = parity;
-    public int DataBits { get; set; } = dataBits;
-    public StopBits StopBits { get; set; } = stopBits;
+    private SerialPort _serialPort;
+    private StringBuilder _serialBuffer = new StringBuilder();
+
+    public int Baudrate { get; set; }
+    public string Port { get; set; }
+    public Parity Parity { get; set; }
+    public int DataBits { get; set; }
+    public StopBits StopBits { get; set; }
+
+    public COM(int baudrate, string port, Parity parity, int dataBits, StopBits stopBits)
+    {
+        Baudrate = baudrate;
+        Port = port;
+        Parity = parity;
+        DataBits = dataBits;
+        StopBits = stopBits;
+        _serialPort = new SerialPort(port, baudrate, parity, dataBits, stopBits);
+        _serialPort.DataReceived += DataReceivedHandler;
+    }
 
     public void OpenConnection()
     {
-        if (!SerialPort.IsOpen)
+        if (!_serialPort.IsOpen)
         {
-            SerialPort.Open();
+            _serialPort.Open();
         }
     }
 
     public void CloseConnection()
     {
-        if (SerialPort.IsOpen)
+        if (_serialPort.IsOpen)
         {
-            SerialPort.Close();
+            _serialPort.Close();
         }
     }
 
@@ -40,18 +53,66 @@ public class COM(int baudrate, string port, Parity parity, int dataBits, StopBit
     public void SetBaudrate(int baudrate)
     {
         Baudrate = baudrate;
-        SerialPort.BaudRate = baudrate;
+        _serialPort.BaudRate = baudrate;
     }
 
     public void SetParity(Parity parity)
     {
         Parity = parity;
-        SerialPort.Parity = parity;
+        _serialPort.Parity = parity;
     }
 
     public void SetDataBits(int dataBits)
     {
         DataBits = dataBits;
-        SerialPort.DataBits = dataBits;
+        _serialPort.DataBits = dataBits;
+    }
+
+    private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+    {
+        SerialPort sp = (SerialPort)sender;
+        string inData = sp.ReadExisting();
+        lock (_serialBuffer)
+        {
+            _serialBuffer.Append(inData);
+        }
+    }
+
+    public string ReadSerialOutput()
+    {
+        lock (_serialBuffer)
+        {
+            string data = _serialBuffer.ToString();
+            _serialBuffer.Clear();
+            return data;
+        }
+    }
+
+    public void ClearSerialOutput()
+    {
+        lock (_serialBuffer)
+        {
+            _serialBuffer.Clear();
+        }
+    }
+
+    public void WriteSerialOutput(string data)
+    {
+        _serialPort.Write(data);
+    }
+
+    public string ReadPinConfiguration()
+    {
+        var data = ReadSerialOutput();
+        if (string.IsNullOrWhiteSpace(data))
+        {
+            return string.Empty;
+        }
+        lock (_serialBuffer)
+        {
+            _serialBuffer.Append(data);
+        }
+        return data;
     }
 }
+

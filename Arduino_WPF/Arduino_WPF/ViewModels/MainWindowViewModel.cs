@@ -83,6 +83,64 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
+    private string _serialOutput;
+    public string SerialOutput
+    {
+        get => _serialOutput;
+        set
+        {
+            if (_serialOutput != value)
+            {
+                _serialOutput = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private CustomPinViewModel _selectedPin;
+    public CustomPinViewModel SelectedPin
+    {
+        get => _selectedPin;
+        set
+        {
+            _selectedPin = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private PinMode _selectedPinMode;
+    public PinMode SelectedPinMode
+    {
+        get => _selectedPinMode;
+        set
+        {
+            _selectedPinMode = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private State _selectedState;
+    public State SelectedState
+    {
+        get => _selectedState;
+        set
+        {
+            _selectedState = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private string _readPinConfiguration;
+    public string ReadPinConfiguration
+    {
+        get => _readPinConfiguration;
+        set
+        {
+            _readPinConfiguration = value;
+            OnPropertyChanged();
+        }
+    }
+
     public COM COM
     {
         get => _com!;
@@ -100,8 +158,11 @@ public class MainWindowViewModel : BaseViewModel
     public ICommand CloseCOMCommand { get; }
     public ICommand RefreshPinsCommand { get; }
     public ICommand ListPortsCommand { get; }
+    public RelayCommand ClearSerialOutputCommand { get; }
     public ObservableCollection<Parity> ParityValues { get; private set; }
     public ObservableCollection<StopBits> StopBitsValues { get; private set; }
+    public ICommand WritePinCommand { get; }
+    public ICommand ReadPinCommand { get; }
 
     public MainWindowViewModel()
     {
@@ -113,12 +174,18 @@ public class MainWindowViewModel : BaseViewModel
         CloseCOMCommand = new RelayCommand(CloseCOM);
         RefreshPinsCommand = new RelayCommand(RefreshPins);
         ListPortsCommand = new RelayCommand(ListPorts);
+        ClearSerialOutputCommand = new RelayCommand(ClearSerialOutput);
+        WritePinCommand = new RelayCommand(WritePinConfiguration);
+        ReadPinCommand = new RelayCommand(ReadPinConfigurationFromCOM);
+
 
         // Default values
         BaudRate = 9600;
         Parity = Parity.None;
         DataBits = 8;
         StopBits = StopBits.One;
+
+        Task.Run(ReadSerialLoop);
     }
 
     private void OpenCOM()
@@ -130,6 +197,7 @@ public class MainWindowViewModel : BaseViewModel
             try
             {
                 COM.OpenConnection();
+                MessageBox.Show($"Connection to {COM.Port} opened.");
             }
             catch (Exception ex)
             {
@@ -138,7 +206,7 @@ public class MainWindowViewModel : BaseViewModel
         }
         else
         {
-           MessageBox.Show("Please select a port first.");
+            MessageBox.Show("Please select a port first.");
         }
     }
 
@@ -149,6 +217,7 @@ public class MainWindowViewModel : BaseViewModel
             try
             {
                 COM.CloseConnection();
+                MessageBox.Show($"Connection to {COM.Port} closed.");
             }
             catch (Exception ex)
             {
@@ -195,6 +264,69 @@ public class MainWindowViewModel : BaseViewModel
         if (pinViewModel != null)
         {
             pinViewModel.UpdateState();
+        }
+    }
+
+    private async Task ReadSerialLoop()
+    {
+        while (true)
+        {
+            if (COM != null)
+            {
+                string output = COM.ReadSerialOutput();
+                if (!string.IsNullOrEmpty(output))
+                {
+                    Application.Current.Dispatcher.Invoke(() => {
+                        SerialOutput += output;
+                    });
+                }
+            }
+            await Task.Delay(100);
+        }
+    }
+
+    public void ClearSerialOutput()
+    {
+        SerialOutput = string.Empty;
+
+        if (COM != null)
+        {
+            COM.ClearSerialOutput();
+        }
+    }
+
+    private void WritePinConfiguration()
+    {
+        if (SelectedPin != null)
+        {
+            var pin = new Pin(SelectedPin.ID, SelectedPinMode, SelectedState);
+            string pinData = pin.WritePinData(SelectedState, SelectedPinMode);
+
+            if (COM != null)
+            {
+                COM.WriteSerialOutput(pinData);
+            }
+        }
+        else
+        {
+            MessageBox.Show("Please select a pin.");
+        }
+    }
+
+    private void ReadPinConfigurationFromCOM()
+    {
+        if (COM != null)
+        {
+            string configuration = COM.ReadPinConfiguration();
+
+            if (!string.IsNullOrEmpty(configuration))
+            {
+                var pin = new Pin(0, PinMode.Unknown, State.Unknown);
+                pin.ReadPinData(configuration);
+                SelectedPin = Pins.FirstOrDefault(p => p.ID == pin.ID);
+                SelectedPinMode = pin.PinMode;
+                SelectedState = pin.State;
+            }
         }
     }
 }
