@@ -114,7 +114,7 @@ public class MainWindowViewModel : BaseViewModel
         RefreshPinsCommand = new RelayCommand(RefreshPins);
         ListPortsCommand = new RelayCommand(ListPorts);
 
-        // Default Stop
+        // Default values
         BaudRate = 9600;
         Parity = Parity.None;
         DataBits = 8;
