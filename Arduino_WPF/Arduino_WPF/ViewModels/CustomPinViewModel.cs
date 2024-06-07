@@ -60,12 +60,26 @@ public class CustomPinViewModel : BaseViewModel
 
     public DateTime LastRefresh => _pin.LastRefresh;
 
+    public void UpdateState(/*int id, State state, PinMode pinMode*/)
     public ICommand TogglePinModeCommand;
     public ICommand ToggleStateCommand;
     public ICommand OnClickExitButtonCommand;
 
     public CustomPinViewModel(int iD, PinMode pinMode, State state, Action OnClickExitButton)
     {
+        // get id, current state and the current pinMode
+        // if the id matches the current id, update the state and pinMode
+        if (id == _pin.ID)
+        {
+            _pin.WritePinData(state, pinMode);
+            OnPropertyChanged(nameof(State));
+            OnPropertyChanged(nameof(PinMode));
+            OnPropertyChanged(nameof(LastRefresh));
+        }
+        else
+        {
+            throw new Exception("ID does not match");
+        }
         _pin = new(iD, pinMode, state);
         TogglePinModeCommand = new RelayCommand(TogglePinMode);
         ToggleStateCommand = new RelayCommand(ToggleState);

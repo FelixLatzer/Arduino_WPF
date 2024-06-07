@@ -8,12 +8,17 @@ namespace Arduino_WPF.Models;
 
 public enum PinMode
 {
-    INPUT,
-    OUTPUT
+    Input,
+    Output,
+    Analog,
+    PWM,
+    Servo,
+    Unknown
 }
 
 public enum State
 {
-    LOW,
-    HIGH
+    Low,
+    High,
+    Unknown
 }
