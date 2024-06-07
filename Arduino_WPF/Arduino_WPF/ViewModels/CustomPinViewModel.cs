@@ -53,9 +53,20 @@ public class CustomPinViewModel(int id, PinMode pinMode, State state) : BaseView
 
     public DateTime LastRefresh => _pin.LastRefresh;
 
-    public void UpdateState()
+    public void UpdateState(/*int id, State state, PinMode pinMode*/)
     {
-        // TODO: JUST A TRYOUT REPLACE WITH ACTUAL LOGIC!!!!
-        State = State == State.Low ? State.High : State.Low;
+        // get id, current state and the current pinMode
+        // if the id matches the current id, update the state and pinMode
+        if (id == _pin.ID)
+        {
+            _pin.WritePinData(state, pinMode);
+            OnPropertyChanged(nameof(State));
+            OnPropertyChanged(nameof(PinMode));
+            OnPropertyChanged(nameof(LastRefresh));
+        }
+        else
+        {
+            throw new Exception("ID does not match");
+        }
     }
 }
