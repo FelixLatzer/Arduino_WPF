@@ -76,21 +76,13 @@ public class CustomPinViewModel : BaseViewModel
         OnClickExitButtonCommand = new RelayCommand(OnClickExitButton);
     }
 
-    public void UpdateState(/*int id, State state, PinMode pinMode*/)
+    public void UpdateState()
     {
         // get id, current state and the current pinMode
         // if the id matches the current id, update the state and pinMode
-        //if (id == _pin.ID)
-        //{
-        //    _pin.WritePinData(state, pinMode);
-        //    OnPropertyChanged(nameof(State));
-        //    OnPropertyChanged(nameof(PinMode));
-        //    OnPropertyChanged(nameof(LastRefresh));
-        //}
-        //else
-        //{
-        //    throw new Exception("ID does not match");
-        //}
+        OnPropertyChanged(nameof(State));
+        OnPropertyChanged(nameof(PinMode));
+        OnPropertyChanged(nameof(LastRefresh));
     }
 
     private void TogglePinMode()

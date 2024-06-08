@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Arduino_WPF.Models;
 
@@ -113,6 +116,29 @@ public class COM
             _serialBuffer.Append(data);
         }
         return data;
+    }
+
+    public List<JObject> ExtractJsonObjects(string data)
+    {
+        var jsonObjects = new List<JObject>();
+        while (data.Contains("{") && data.Contains("}"))
+        {
+            int startIndex = data.IndexOf("{");
+            int endIndex = data.IndexOf("}", startIndex) + 1;
+            string jsonSubstring = data.Substring(startIndex, endIndex - startIndex);
+            data = data.Remove(startIndex, endIndex - startIndex);
+
+            try
+            {
+                var jsonObject = JObject.Parse(jsonSubstring);
+                jsonObjects.Add(jsonObject);
+            }
+            catch (JsonReaderException)
+            {
+                MessageBox.Show("Invalid JSON data received" + jsonSubstring);
+            }
+        }
+        return jsonObjects;
     }
 }
 

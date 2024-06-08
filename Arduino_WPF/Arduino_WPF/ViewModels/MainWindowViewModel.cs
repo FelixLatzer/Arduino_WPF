@@ -1,5 +1,7 @@
 ﻿using Arduino_WPF.Models;
 using Arduino_WPF.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Windows;
@@ -11,6 +13,8 @@ public class MainWindowViewModel : BaseViewModel
 {
     public ObservableCollection<CustomPinViewModel> Pins { get; private set; }
     public ObservableCollection<string> AvailablePorts { get; private set; }
+    public ObservableCollection<PinMode> PinModes { get; private set; }
+    public ObservableCollection<State> PinStates { get; private set; }
     private COM? _com;
 
     private int _baudRate;
@@ -169,6 +173,8 @@ public class MainWindowViewModel : BaseViewModel
         ParityValues = new ObservableCollection<Parity>(Enum.GetValues(typeof(Parity)).Cast<Parity>());
         StopBitsValues = new ObservableCollection<StopBits>(Enum.GetValues(typeof(StopBits)).Cast<StopBits>());
         Pins = new ObservableCollection<CustomPinViewModel>();
+        PinModes = new ObservableCollection<PinMode>(Enum.GetValues(typeof(PinMode)).Cast<PinMode>());
+        PinStates = new ObservableCollection<State>(Enum.GetValues(typeof(State)).Cast<State>());
         AvailablePorts = new ObservableCollection<string>();
         OpenCOMCommand = new RelayCommand(OpenCOM);
         CloseCOMCommand = new RelayCommand(CloseCOM);
@@ -226,11 +232,92 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
+    //private void RefreshPins()
+    //{
+    //    Pins.Clear();
+
+    //    try
+    //    {
+    //        string data = COM.ReadSerialOutput();
+    //        if (string.IsNullOrEmpty(data))
+    //        {
+    //            MessageBox.Show("No data received.");
+    //            return;
+    //        }
+
+    //        var jsonObjects = COM.ExtractJsonObjects(data);
+
+    //        foreach (var pinObject in jsonObjects)
+    //        {
+    //            int id = (int)pinObject["id"];
+    //            PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), (string)pinObject["mode"]);
+    //            State state = (State)Enum.Parse(typeof(State), (string)pinObject["state"]);
+
+    //            AddPin(id, pinMode, state);
+    //        }
+    //    }
+    //    catch (JsonReaderException ex)
+    //    {
+    //        MessageBox.Show($"Error parsing pin configuration: {ex.Message}");
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        MessageBox.Show($"An error occurred: {ex.Message}");
+    //    }
+    //}
+
+    // TODO: currently a bit hacky use the method above as soon as reading is fixed!!
     private void RefreshPins()
     {
-        foreach (var pinViewModel in Pins)
+        Pins.Clear();
+
+        try
         {
-            pinViewModel.UpdateState();
+            string configuration = "";
+            bool jsonReceived = false;
+
+            while (!jsonReceived)
+            {
+                string serialData = COM.ReadSerialOutput();
+
+                if (!string.IsNullOrEmpty(serialData))
+                {
+                    configuration += serialData;
+
+                    while (configuration.Contains("{") && configuration.Contains("}"))
+                    {
+                        int startIndex = configuration.IndexOf("{");
+                        int endIndex = configuration.IndexOf("}", startIndex) + 1;
+
+                        // exxtract JSON object
+                        string jsonSubstring = configuration.Substring(startIndex, endIndex - startIndex);
+
+                        // remove the extracted JSON object from the config str
+                        configuration = configuration.Remove(startIndex, endIndex - startIndex);
+
+                        JObject pinObject = JObject.Parse(jsonSubstring);
+
+                        // add  pin to the Pins 
+                        int id = (int)pinObject["id"];
+                        PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), (string)pinObject["mode"]);
+                        State state = (State)Enum.Parse(typeof(State), (string)pinObject["state"]);
+
+                        // Create CustomPinViewModel for each pin 
+                        AddPin(id, pinMode, state);
+
+                        // check if more JSON objects are in the configuration
+                        jsonReceived = !configuration.Contains("{") && !configuration.Contains("}");
+                    }
+                }
+            }
+        }
+        catch (JsonReaderException ex)
+        {
+            MessageBox.Show($"Error parsing pin configuration: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"An error occurred: {ex.Message}");
         }
     }
 
@@ -276,7 +363,8 @@ public class MainWindowViewModel : BaseViewModel
                 string output = COM.ReadSerialOutput();
                 if (!string.IsNullOrEmpty(output))
                 {
-                    Application.Current.Dispatcher.Invoke(() => {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
                         SerialOutput += output;
                     });
                 }
