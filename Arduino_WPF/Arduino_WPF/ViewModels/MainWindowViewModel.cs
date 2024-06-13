@@ -232,41 +232,6 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
-    //private void RefreshPins()
-    //{
-    //    Pins.Clear();
-
-    //    try
-    //    {
-    //        string data = COM.ReadSerialOutput();
-    //        if (string.IsNullOrEmpty(data))
-    //        {
-    //            MessageBox.Show("No data received.");
-    //            return;
-    //        }
-
-    //        var jsonObjects = COM.ExtractJsonObjects(data);
-
-    //        foreach (var pinObject in jsonObjects)
-    //        {
-    //            int id = (int)pinObject["id"];
-    //            PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), (string)pinObject["mode"]);
-    //            State state = (State)Enum.Parse(typeof(State), (string)pinObject["state"]);
-
-    //            AddPin(id, pinMode, state);
-    //        }
-    //    }
-    //    catch (JsonReaderException ex)
-    //    {
-    //        MessageBox.Show($"Error parsing pin configuration: {ex.Message}");
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        MessageBox.Show($"An error occurred: {ex.Message}");
-    //    }
-    //}
-
-    // TODO: currently a bit hacky use the method above as soon as reading is fixed!!
     private void RefreshPins()
     {
         Pins.Clear();
@@ -275,40 +240,40 @@ public class MainWindowViewModel : BaseViewModel
         {
             string configuration = "";
             bool jsonReceived = false;
+            int attempts = 0;
+            int maxAttempts = 5;
 
-            while (!jsonReceived)
+            while (!jsonReceived && attempts < maxAttempts)
             {
                 string serialData = COM.ReadSerialOutput();
+                attempts++;
 
                 if (!string.IsNullOrEmpty(serialData))
                 {
                     configuration += serialData;
 
-                    while (configuration.Contains("{") && configuration.Contains("}"))
+                    var jsonObjects = COM.ExtractJsonObjects(ref configuration);
+                    foreach (var pinObject in jsonObjects)
                     {
-                        int startIndex = configuration.IndexOf("{");
-                        int endIndex = configuration.IndexOf("}", startIndex) + 1;
-
-                        // exxtract JSON object
-                        string jsonSubstring = configuration.Substring(startIndex, endIndex - startIndex);
-
-                        // remove the extracted JSON object from the config str
-                        configuration = configuration.Remove(startIndex, endIndex - startIndex);
-
-                        JObject pinObject = JObject.Parse(jsonSubstring);
-
-                        // add  pin to the Pins 
                         int id = (int)pinObject["id"];
                         PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), (string)pinObject["mode"]);
                         State state = (State)Enum.Parse(typeof(State), (string)pinObject["state"]);
 
-                        // Create CustomPinViewModel for each pin 
                         AddPin(id, pinMode, state);
-
-                        // check if more JSON objects are in the configuration
-                        jsonReceived = !configuration.Contains("{") && !configuration.Contains("}");
                     }
+
+                    jsonReceived = !configuration.Contains("{") && !configuration.Contains("}");
                 }
+
+                if (!jsonReceived)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
+
+            if (!jsonReceived)
+            {
+                MessageBox.Show("No valid JSON data received after multiple attempts.");
             }
         }
         catch (JsonReaderException ex)

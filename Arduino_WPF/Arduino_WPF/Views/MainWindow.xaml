@@ -56,11 +56,14 @@
             <Button Command="{Binding ClearSerialOutputCommand}" Content="Clear Serial Output" Width="100" Margin="5"/>
 
             <!--menue to write the pin data with the SelectedState, SelectedPinMode-->
-
-            <ComboBox ItemsSource="{Binding Pins}" SelectedItem="{Binding SelectedPin}" Width="200" Margin="5">
+            <ComboBox ItemsSource="{Binding Pins}" SelectedItem="{Binding SelectedPin}" Width="500" Margin="5">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ID}" Margin="5"/>
+                            <TextBlock Text="{Binding PinMode}" Margin="5"/>
+                            <TextBlock Text="{Binding State}" Margin="5"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
