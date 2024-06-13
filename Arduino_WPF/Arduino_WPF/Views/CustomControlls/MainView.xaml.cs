@@ -1,5 +1,4 @@
-﻿using Arduino_WPF.Models;
-using Arduino_WPF.ViewModels;
+﻿using Arduino_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +16,17 @@ using System.Windows.Shapes;
 
 namespace Arduino_WPF.Views.CustomControlls;
 /// <summary>
-/// Interaction logic for CustomPin.xaml
+/// Interaction logic for MainView.xaml
 /// </summary>
-public partial class CustomPin : UserControl
+public partial class MainView : UserControl
 {
-    public CustomPin()
+    public MainViewViewModel ViewModel { get; set; }
+
+    public MainView()
     {
         InitializeComponent();
+
+        ViewModel = new();
+        this.DataContext = ViewModel;
     }
 }

@@ -332,17 +332,13 @@ public class MainWindowViewModel : BaseViewModel
 
     public void AddPin(int id, PinMode pinMode, State state)
     {
-        var pinViewModel = new CustomPinViewModel(id, pinMode, state);
+        var pinViewModel = new CustomPinViewModel(id, pinMode, state, RemovePin);
         Pins.Add(pinViewModel);
     }
 
-    public void RemovePin(int id)
+    public void RemovePin(CustomPinViewModel pin)
     {
-        var pinViewModel = Pins.FirstOrDefault(p => p.ID == id);
-        if (pinViewModel != null)
-        {
-            Pins.Remove(pinViewModel);
-        }
+        Pins.Remove(pin);
     }
 
     public void UpdatePin(int id, State state, PinMode pinMode)

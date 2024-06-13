@@ -1,5 +1,6 @@
 ﻿using Arduino_WPF.Models;
 using Arduino_WPF.Utils;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
@@ -7,6 +8,9 @@ namespace Arduino_WPF.ViewModels;
 public class CustomPinViewModel : BaseViewModel
 {
     private readonly Pin _pin;
+    private readonly Action<CustomPinViewModel> _onClickExit;
+    public ObservableCollection<PinMode> PinModes { get; private set; }
+    public ObservableCollection<State> PinStates { get; private set; }
 
     public string Titel 
     {
@@ -53,27 +57,43 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
-    public DateTime LastRefresh => _pin.LastRefresh;
-
-    public ICommand TogglePinModeCommand;
-    public ICommand ToggleStateCommand;
-    public ICommand OnClickExitButtonCommand;
-
-    // temporary solution for CodeBehind problem --> see customPin.xaml.cs
-    public CustomPinViewModel(int iD, PinMode pinMode, State state)
+    private PinMode _selectedPinMode;
+    public PinMode SelectedPinMode
     {
-        _pin = new(iD, pinMode, state);
-        TogglePinModeCommand = new RelayCommand(TogglePinMode);
-        ToggleStateCommand = new RelayCommand(ToggleState);
-        OnClickExitButtonCommand = new RelayCommand(TogglePinMode); // !!!!!!!!
+        get => _selectedPinMode;
+        set
+        {
+            _selectedPinMode = value;
+            OnPropertyChanged();
+        }
     }
 
-    public CustomPinViewModel(int iD, PinMode pinMode, State state, Action OnClickExitButton)
+    private State _selectedState;
+    public State SelectedState
+    {
+        get => _selectedState;
+        set
+        {
+            _selectedState = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public DateTime LastRefresh => _pin.LastRefresh;
+
+    public ICommand OnClickExitButtonCommand 
+    {
+        get;
+        set;
+    }
+
+    public CustomPinViewModel(int iD, PinMode pinMode, State state, Action<CustomPinViewModel> OnClickExitButton)
     {
         _pin = new(iD, pinMode, state);
-        TogglePinModeCommand = new RelayCommand(TogglePinMode);
-        ToggleStateCommand = new RelayCommand(ToggleState);
-        OnClickExitButtonCommand = new RelayCommand(OnClickExitButton);
+        _onClickExit = OnClickExitButton;
+        OnClickExitButtonCommand = new RelayCommand(OnClickExit);
+        PinModes = new ObservableCollection<PinMode>(Enum.GetValues(typeof(PinMode)).Cast<PinMode>());
+        PinStates = new ObservableCollection<State>(Enum.GetValues(typeof(State)).Cast<State>());
     }
 
     public void UpdateState()
@@ -85,13 +105,8 @@ public class CustomPinViewModel : BaseViewModel
         OnPropertyChanged(nameof(LastRefresh));
     }
 
-    private void TogglePinMode()
+    private void OnClickExit()
     {
-        PinMode = PinMode == PinMode.Input ? PinMode.Input : PinMode.Input;
-    }
-
-    public void ToggleState()
-    {
-        State = State == State.Low ? State.Low : State.Low;
+        _onClickExit(this);
     }
 }
