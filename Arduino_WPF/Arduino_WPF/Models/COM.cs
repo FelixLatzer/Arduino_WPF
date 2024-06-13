@@ -118,13 +118,14 @@ public class COM
         return data;
     }
 
-    public List<JObject> ExtractJsonObjects(string data)
+    public List<JObject> ExtractJsonObjects(ref string data)
     {
         var jsonObjects = new List<JObject>();
-        while (data.Contains("{") && data.Contains("}"))
+        int startIndex, endIndex;
+
+        while ((startIndex = data.IndexOf("{")) != -1 && (endIndex = data.IndexOf("}", startIndex)) != -1)
         {
-            int startIndex = data.IndexOf("{");
-            int endIndex = data.IndexOf("}", startIndex) + 1;
+            endIndex += 1;
             string jsonSubstring = data.Substring(startIndex, endIndex - startIndex);
             data = data.Remove(startIndex, endIndex - startIndex);
 
@@ -135,9 +136,10 @@ public class COM
             }
             catch (JsonReaderException)
             {
-                MessageBox.Show("Invalid JSON data received" + jsonSubstring);
+                MessageBox.Show("Invalid JSON data received: " + jsonSubstring);
             }
         }
+
         return jsonObjects;
     }
 }
