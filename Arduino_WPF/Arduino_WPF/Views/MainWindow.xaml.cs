@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arduino_WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,5 +22,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        DataContext = new MainWindowViewModel();
     }
 }

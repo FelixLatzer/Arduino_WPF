@@ -16,7 +16,9 @@ public class PinViewViewModel : BaseViewModel
 
     public ICommand AddPinCommand { get; set; }
 
-    public PinViewViewModel() 
+    private COM _com;
+
+    public PinViewViewModel(COM com) 
     {
         AddPinCommand = new RelayCommand(AddPin);
 
@@ -25,6 +27,8 @@ public class PinViewViewModel : BaseViewModel
             new(1, Models.PinMode.Output, Models.State.High, RemovePin),
             new(1, Models.PinMode.Output, Models.State.Low, RemovePin)
         };
+
+        _com = com;
     }
 
     private void AddPin()

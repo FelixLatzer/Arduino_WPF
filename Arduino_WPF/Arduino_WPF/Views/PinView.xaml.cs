@@ -14,19 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Arduino_WPF.Views.CustomControlls;
+namespace Arduino_WPF.Views;
 /// <summary>
 /// Interaction logic for MainView.xaml
 /// </summary>
-public partial class MainView : UserControl
+public partial class PinView : UserControl
 {
-    public PinViewViewModel ViewModel { get; set; }
-
-    public MainView()
+    public PinView()
     {
         InitializeComponent();
-
-        ViewModel = new();
-        this.DataContext = ViewModel;
     }
 }
