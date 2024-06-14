@@ -20,7 +20,7 @@ namespace Arduino_WPF.Views.CustomControlls;
 /// </summary>
 public partial class MainView : UserControl
 {
-    public MainViewViewModel ViewModel { get; set; }
+    public PinViewViewModel ViewModel { get; set; }
 
     public MainView()
     {

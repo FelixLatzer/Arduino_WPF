@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
-public class MainViewViewModel : BaseViewModel
+public class PinViewViewModel : BaseViewModel
 {
     public ObservableCollection<CustomPinViewModel> Pins { get; set; }
 
     public ICommand AddPinCommand { get; set; }
 
-    public MainViewViewModel() 
+    public PinViewViewModel() 
     {
         AddPinCommand = new RelayCommand(AddPin);
 
