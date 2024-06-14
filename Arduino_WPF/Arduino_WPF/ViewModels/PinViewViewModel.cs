@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
+
 public class PinViewViewModel : BaseViewModel
 {
     public ObservableCollection<CustomPinViewModel> Pins { get; set; }

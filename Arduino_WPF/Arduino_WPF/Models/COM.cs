@@ -101,21 +101,20 @@ public class COM
 
     public void WriteSerialOutput(string data)
     {
-        _serialPort.Write(data);
+        lock (_serialBuffer)
+        {    
+            _serialPort.Write(data);
+        }
     }
 
     public string ReadPinConfiguration()
     {
-        var data = ReadSerialOutput();
-        if (string.IsNullOrWhiteSpace(data))
-        {
-            return string.Empty;
-        }
         lock (_serialBuffer)
         {
-            _serialBuffer.Append(data);
+            string data = _serialBuffer.ToString();
+            _serialBuffer.Clear();
+            return data;
         }
-        return data;
     }
 
     public List<JObject> ExtractJsonObjects(ref string data)

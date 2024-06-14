@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:Arduino_WPF.Views" 
              xmlns:local1="clr-namespace:Arduino_WPF.Utils"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="800">
 
     <UserControl.Resources>
         <local1:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
     </UserControl.Resources>
-    
+
     <Grid>
         <StackPanel>
             <ComboBox ItemsSource="{Binding AvailablePorts}" SelectedItem="{Binding SelectedPort}" Width="200" Margin="5"/>
@@ -58,7 +58,6 @@
             <Button Command="{Binding RefreshPinsCommand}" Content="Refresh Pins" Width="100" Margin="5"/>
             <Button Command="{Binding ClearSerialOutputCommand}" Content="Clear Serial Output" Width="100" Margin="5"/>
 
-            <!--menue to write the pin data with the SelectedState, SelectedPinMode-->
             <ComboBox ItemsSource="{Binding Pins}" SelectedItem="{Binding SelectedPin}" Width="500" Margin="5">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -89,6 +88,17 @@
 
             <Button Command="{Binding WritePinCommand}" Content="Write Pin" Width="100" Margin="5"/>
 
+            <ListBox ItemsSource="{Binding PresetConfigurations}" SelectedItem="{Binding SelectedPresetConfiguration}" Height="40" Width="500" Margin="5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Id}" Margin="5"/>
+                            <TextBlock Text="{Binding Mode}" Margin="5"/>
+                            <TextBlock Text="{Binding State}" Margin="5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5" MaxWidth="500" Height="100">
                 <TextBox Text="{Binding SerialOutput}" AcceptsReturn="True" TextWrapping="Wrap"/>
