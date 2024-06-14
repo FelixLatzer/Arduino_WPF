@@ -1,6 +1,9 @@
 ﻿using Arduino_WPF.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,14 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Arduino_WPF;
-
+namespace Arduino_WPF.Views;
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+/// Interaction logic for SerialConnectionView_1.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class SerialConnectionView : UserControl
 {
-    public MainWindow()
+    public SerialConnectionView()
     {
         InitializeComponent();
 

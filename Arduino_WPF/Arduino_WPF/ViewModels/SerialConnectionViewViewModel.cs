@@ -234,6 +234,12 @@ public class SerialConnectionViewViewModel : BaseViewModel
 
     private void RefreshPins()
     {
+        if (COM == null)
+        {
+            MessageBox.Show("Please open a connection first.");
+            return;
+        }
+
         Pins.Clear();
 
         try
