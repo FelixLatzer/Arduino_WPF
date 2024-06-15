@@ -13,6 +13,7 @@ public enum PinMode
 {
     Input,
     Output,
+    Input_Pullup,
     Analog,
     PWM,
     Servo,

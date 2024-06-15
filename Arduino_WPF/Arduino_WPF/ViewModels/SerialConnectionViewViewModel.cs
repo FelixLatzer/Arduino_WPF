@@ -193,6 +193,28 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    private PresetJsonLoader _selectedPresetConfiguration;
+    public PresetJsonLoader SelectedPresetConfiguration
+    {
+        get => _selectedPresetConfiguration;
+        set
+        {
+            _selectedPresetConfiguration = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private List<PresetJsonLoader> _presetConfigurations;
+    public List<PresetJsonLoader> PresetConfigurations
+    {
+        get => _presetConfigurations;
+        set
+        {
+            _presetConfigurations = value;
+            OnPropertyChanged();
+        }
+    }
+
 
     public ICommand OpenCOMCommand { get; }
     public ICommand CloseCOMCommand { get; }
@@ -204,8 +226,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
     public ICommand WritePinCommand { get; }
     public ICommand ReadPinCommand { get; }
     public ICommand LoadPresetConfigurationsCommand { get; }
-    public PresetJsonLoader SelectedPresetConfiguration { get; set; }
-    public List<PresetJsonLoader> PresetConfigurations { get => PresetJsonLoader.GetPresetConfigurations(); }
+    public ICommand SetSelectedPresetConfigurationCommand { get; }
     public ICommand LoadConfigurationsFromFileCommand { get; }
 
     /// <summary>
@@ -228,6 +249,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
         ReadPinCommand = new RelayCommand(ReadPinConfigurationFromCOM);
         LoadPresetConfigurationsCommand = new RelayCommand(LoadPresetConfigurations);
         LoadConfigurationsFromFileCommand = new RelayCommand(LoadConfigurationsFromFile);
+        SetSelectedPresetConfigurationCommand = new RelayCommand<PresetJsonLoader>(SetSelectedPresetConfiguration);
 
 
         // Default values
@@ -236,6 +258,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
         DataBits = 8;
         StopBits = StopBits.One;
 
+        PresetConfigurations = PresetJsonLoader.GetPresetConfigurations();
         Task.Run(ReadSerialLoop);
     }
 
@@ -428,6 +451,11 @@ public class SerialConnectionViewViewModel : BaseViewModel
     /// <param name="json"></param>
     private void ParseJsonConfiguration(string json)
     {
+        if (COM == null)
+        {
+            return;
+        }
+
         var jsonObjects = COM.ExtractJsonObjects(ref json);
         foreach (var jsonObject in jsonObjects)
         {
@@ -520,24 +548,20 @@ public class SerialConnectionViewViewModel : BaseViewModel
                 {
                     MessageBox.Show("Please open a connection first.");
                 }
-
-                //string json = File.ReadAllText(openFileDialog.FileName);
-                //ParseJsonConfiguration(json);
-                //MessageBox.Show("Configurations loaded successfully.");
-
-                //if (COM != null)
-                //{
-                //    COM.WriteSerialOutput(json);
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Please open a connection first.");
-                //}
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to load configurations: {ex.Message}");
             }
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="presetConfiguration"></param>
+    private void SetSelectedPresetConfiguration(PresetJsonLoader presetConfiguration)
+    {
+        SelectedPresetConfiguration = presetConfiguration;
     }
 }

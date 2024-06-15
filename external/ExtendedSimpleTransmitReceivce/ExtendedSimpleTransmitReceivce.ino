@@ -44,6 +44,13 @@ void loop() {
         Serial.print(id);
         Serial.print(" is: ");
         Serial.println(pinState);
+      } else if (mode == "INPUT_PULLUP" || "Input_Pullup") {
+        pinMode(id, INPUT_PULLUP);
+        int pinState = digitalRead(id);
+        Serial.print("Curren state of pin ");
+        Serial.print(id);
+        Serial.print(" is: ");
+        Serial.println(pinState);
       } else {
         // Handle unsupported mode
         Serial.println("Unsupported mode received.");

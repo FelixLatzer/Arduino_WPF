@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "mode": "Output",
+    "mode": "OUTPUT",
     "state": 1
   },
   {
     "id": 2,
-    "mode": "Output",
+    "mode": "OUTPUT",
     "state": 0
   },
   {
@@ -16,17 +16,17 @@
   },
   {
     "id": 4,
-    "mode": "InputPullup",
+    "mode": "INPUT_PULLUP",
     "state": 1
   },
   {
     "id": 5,
-    "mode": "Output",
+    "mode": "OUTPUT",
     "state": 0
   },
   {
     "id": 6,
-    "mode": "InputPullup",
+    "mode": "INPUT_PULLUP",
     "state": 1
   }
 ]
