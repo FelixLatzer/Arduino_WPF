@@ -12,11 +12,17 @@ public class CustomPinViewModel : BaseViewModel
     public ObservableCollection<PinMode> PinModes { get; private set; }
     public ObservableCollection<State> PinStates { get; private set; }
 
+    /// <summary>
+    /// This property gets the title of the pin.
+    /// </summary>
     public string Titel 
     {
         get => $"Pin {_pin.ID}";
     }
 
+    /// <summary>
+    /// This property gets the ID of the pin.
+    /// </summary>
     public int ID
     {
         get => _pin.ID;
@@ -30,6 +36,9 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This property gets the pinMode of the pin.
+    /// </summary>
     public PinMode PinMode
     {
         get => _pin.PinMode;
@@ -43,6 +52,9 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This property gets the state of the pin.
+    /// </summary>
     public State State
     {
         get => _pin.State;
@@ -57,6 +69,9 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This property gets the selected pinMode.
+    /// </summary>
     private PinMode _selectedPinMode;
     public PinMode SelectedPinMode
     {
@@ -68,6 +83,9 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This property gets the selected state.
+    /// </summary>
     private State _selectedState;
     public State SelectedState
     {
@@ -79,14 +97,27 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This property gets the last refresh of the pin.
+    /// </summary>
     public DateTime LastRefresh => _pin.LastRefresh;
 
+    /// <summary>
+    /// This property gets the command for the exit button.
+    /// </summary>
     public ICommand OnClickExitButtonCommand 
     {
         get;
         set;
     }
 
+    /// <summary>
+    /// Constructor for the CustomPinViewModel class.
+    /// </summary>
+    /// <param name="iD"></param>
+    /// <param name="pinMode"></param>
+    /// <param name="state"></param>
+    /// <param name="OnClickExitButton"></param>
     public CustomPinViewModel(int iD, PinMode pinMode, State state, Action<CustomPinViewModel> OnClickExitButton)
     {
         _pin = new(iD, pinMode, state);
@@ -96,6 +127,9 @@ public class CustomPinViewModel : BaseViewModel
         PinStates = new ObservableCollection<State>(Enum.GetValues(typeof(State)).Cast<State>());
     }
 
+    /// <summary>
+    /// This method updates the state of the pin.
+    /// </summary>
     public void UpdateState()
     {
         // get id, current state and the current pinMode
@@ -105,6 +139,9 @@ public class CustomPinViewModel : BaseViewModel
         OnPropertyChanged(nameof(LastRefresh));
     }
 
+    /// <summary>
+    /// This method is called when the exit button is clicked.
+    /// </summary>
     private void OnClickExit()
     {
         _onClickExit(this);

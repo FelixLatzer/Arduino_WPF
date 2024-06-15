@@ -17,6 +17,9 @@ public class PinViewViewModel : BaseViewModel
 
     public ICommand AddPinCommand { get; set; }
 
+    /// <summary>
+    /// This method initializes the PinViewViewModel.
+    /// </summary>
     public PinViewViewModel() 
     {
         AddPinCommand = new RelayCommand(AddPin);
@@ -28,11 +31,18 @@ public class PinViewViewModel : BaseViewModel
         };
     }
 
+    /// <summary>
+    /// This method adds a pin to the Pins collection.
+    /// </summary>
     private void AddPin()
     {
         Pins.Add(new(1, Models.PinMode.Input, Models.State.Low, RemovePin));
     }
 
+    /// <summary>
+    /// This method removes a pin from the Pins collection.
+    /// </summary>
+    /// <param name="pin"></param>
     private void RemovePin(CustomPinViewModel pin)
     {
         Pins.Remove(pin);

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "mode": "Output",
+    "state": 1
+  },
+  {
+    "id": 2,
+    "mode": "Input",
+    "state": 0
+  }
+]

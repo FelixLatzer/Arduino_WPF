@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "mode": "Output",
+    "state": 1
+  },
+  {
+    "id": 2,
+    "mode": "Input",
+    "state": 0
+  },
+  {
+    "id": 3,
+    "mode": "Output",
+    "state": 0
+  },
+  {
+    "id": 4,
+    "mode": "InputPullup",
+    "state": 1
+  }
+]

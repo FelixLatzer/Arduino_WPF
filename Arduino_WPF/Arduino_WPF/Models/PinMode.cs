@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Arduino_WPF.Models;
 
+/// <summary>
+/// Enum for the different pin modes.
+/// </summary>
 public enum PinMode
 {
     Input,
@@ -16,6 +19,9 @@ public enum PinMode
     Unknown
 }
 
+/// <summary>
+/// Enum for the different pin states.
+/// </summary>
 public enum State
 {
     Low,

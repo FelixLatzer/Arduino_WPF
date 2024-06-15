@@ -87,6 +87,7 @@
             </ComboBox>
 
             <Button Command="{Binding WritePinCommand}" Content="Write Pin" Width="100" Margin="5"/>
+            <Button Command="{Binding LoadConfigurationsFromFileCommand}" Content="Load Configurations from File" Width="200" Margin="5"/>
 
             <ListBox ItemsSource="{Binding PresetConfigurations}" SelectedItem="{Binding SelectedPresetConfiguration}" Height="40" Width="500" Margin="5">
                 <ListBox.ItemTemplate>

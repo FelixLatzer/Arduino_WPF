@@ -1,0 +1,187 @@
+\doxysection{Arduino\+\_\+\+WPF.\+View\+Models.\+Serial\+Connection\+View\+View\+Model Class Reference}
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model}\index{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}}
+Inheritance diagram for Arduino\+\_\+\+WPF.\+View\+Models.\+Serial\+Connection\+View\+View\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a206a5c11f9b0b65b0fae1897f1c442e1} 
+{\bfseries Serial\+Connection\+View\+View\+Model} ()
+\begin{DoxyCompactList}\small\item\em This method initializes the Serial\+Connection\+View\+View\+Model. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Pin} (int id, \textbf{ Pin\+Mode} pin\+Mode, \textbf{ State} state)
+\begin{DoxyCompactList}\small\item\em This method adds a pin to the Pins collection. \end{DoxyCompactList}\item 
+void \textbf{ Remove\+Pin} (\textbf{ Custom\+Pin\+View\+Model} pin)
+\begin{DoxyCompactList}\small\item\em This method removes a pin from the Pins collection. \end{DoxyCompactList}\item 
+void \textbf{ Update\+Pin} (int id, \textbf{ State} state, \textbf{ Pin\+Mode} pin\+Mode)
+\begin{DoxyCompactList}\small\item\em This method updates the pin. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a85f2a404b1e5a275f9d1ed2eb4df69db} 
+void {\bfseries Clear\+Serial\+Output} ()
+\begin{DoxyCompactList}\small\item\em This method clears the serial output. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_ad5c24903020bc0c0a91ed992f859a167} 
+void {\bfseries Write\+Pin\+Configuration} ()
+\begin{DoxyCompactList}\small\item\em Writes the pin configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a5a33ca5dc2092872bd64132a074065f6} 
+Observable\+Collection$<$ \textbf{ Custom\+Pin\+View\+Model} $>$ {\bfseries Pins}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a38907198276405dac91ea348ff2c8abf} 
+Observable\+Collection$<$ string $>$ {\bfseries Available\+Ports}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_ad8d0c5c1a901cb7d6273e525e289ad16} 
+Observable\+Collection$<$ \textbf{ Pin\+Mode} $>$ {\bfseries Pin\+Modes}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a7cf4c7268765db1f28b1371e688acaec} 
+Observable\+Collection$<$ \textbf{ State} $>$ {\bfseries Pin\+States}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a00385eb89ec016292a4360790c66d2c5} 
+int {\bfseries Baud\+Rate}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a8c456f893dadf83afa1caf7bfcab6c14} 
+Parity {\bfseries Parity}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a7a25074fd34683656f75ddde8725d2d1} 
+int {\bfseries Data\+Bits}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a6772d650ca329a5957aaa7f5cacae90e} 
+Stop\+Bits {\bfseries Stop\+Bits}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_aa67f19677baa7559a4e7037124a166b8} 
+string {\bfseries Selected\+Port}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_aa7fa8fc7b3b2e8e1da8e95bf9b1dac2d} 
+string {\bfseries Serial\+Output}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a2176ce67ff449b6799686fa3507bae25} 
+\textbf{ Custom\+Pin\+View\+Model} {\bfseries Selected\+Pin}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a89f80ee14d93d11b6cc8252a80d8fa7c} 
+\textbf{ Pin\+Mode} {\bfseries Selected\+Pin\+Mode}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a60eb098a5a2c24ee9e274e545b4f6aec} 
+\textbf{ State} {\bfseries Selected\+State}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_aa6cc4a0c62aa1c7dddc4d104533fbfcb} 
+string {\bfseries Read\+Pin\+Configuration}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_ab4121b089f99d011c58e066b45a0162c} 
+\textbf{ COM} {\bfseries COM}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the COM object. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a391a8675ef270c2ce64f405067150a3b} 
+ICommand {\bfseries Open\+COMCommand}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a20b245160b6f18b35902aec51b0ba9db} 
+ICommand {\bfseries Close\+COMCommand}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a3571cadbc255556bd626cbba048d99c2} 
+ICommand {\bfseries Refresh\+Pins\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a0b225e98a3f6db66b171663d4a5bb821} 
+ICommand {\bfseries List\+Ports\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_af46416a109d54639b19a019eb54c39fb} 
+Relay\+Command {\bfseries Clear\+Serial\+Output\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a194755f0cd67dd4d45ddd6df20443b4b} 
+Observable\+Collection$<$ Parity $>$ {\bfseries Parity\+Values}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a8e9a0a2f30b29780ca88f4a1e36267c4} 
+Observable\+Collection$<$ Stop\+Bits $>$ {\bfseries Stop\+Bits\+Values}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a299a62873a1d279033b72f5a09273296} 
+ICommand {\bfseries Write\+Pin\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a908b11e7717ff6a7338a30e06208de8e} 
+ICommand {\bfseries Read\+Pin\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a5cbafb9a7988d15ee9ed28b9cf5aa98a} 
+ICommand {\bfseries Load\+Preset\+Configurations\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a63a0efe16786bd799fc551a5f9fd80e3} 
+\textbf{ Preset\+Json\+Loader} {\bfseries Selected\+Preset\+Configuration}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_af93d47d96c997948fad22fb68f854985} 
+List$<$ \textbf{ Preset\+Json\+Loader} $>$ {\bfseries Preset\+Configurations}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a99a8ddf2d70131f0615f9dbc9189697b} 
+ICommand {\bfseries Load\+Configurations\+From\+File\+Command}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \textbf{ Arduino\+\_\+\+WPF.\+View\+Models.\+Base\+View\+Model}}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ On\+Property\+Changed} ([Caller\+Member\+Name] string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em This method is called when a property is changed. \end{DoxyCompactList}\item 
+bool \textbf{ Set\+Property$<$ T $>$} (ref T field, T value, [Caller\+Member\+Name] string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em This method sets the property and calls On\+Property\+Changed if the value is different. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \textbf{ Arduino\+\_\+\+WPF.\+View\+Models.\+Base\+View\+Model}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a2ab16de4389518333dbcc62c7ac2e343} 
+\index{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}!AddPin@{AddPin}}
+\index{AddPin@{AddPin}!Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}}
+\doxysubsubsection{AddPin()}
+{\footnotesize\ttfamily void Arduino\+\_\+\+WPF.\+View\+Models.\+Serial\+Connection\+View\+View\+Model.\+Add\+Pin (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{\textbf{ Pin\+Mode}}]{pin\+Mode,  }\item[{\textbf{ State}}]{state }\end{DoxyParamCaption})}
+
+
+
+This method adds a pin to the Pins collection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em pin\+Mode} & \\
+\hline
+{\em state} & \\
+\hline
+\end{DoxyParams}
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a53e755eafcc764899526051c1a2e7a5b} 
+\index{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}!RemovePin@{RemovePin}}
+\index{RemovePin@{RemovePin}!Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}}
+\doxysubsubsection{RemovePin()}
+{\footnotesize\ttfamily void Arduino\+\_\+\+WPF.\+View\+Models.\+Serial\+Connection\+View\+View\+Model.\+Remove\+Pin (\begin{DoxyParamCaption}\item[{\textbf{ Custom\+Pin\+View\+Model}}]{pin }\end{DoxyParamCaption})}
+
+
+
+This method removes a pin from the Pins collection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & \\
+\hline
+\end{DoxyParams}
+\label{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model_a637f95bb844bcefeb83e133acd0f1188} 
+\index{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}!UpdatePin@{UpdatePin}}
+\index{UpdatePin@{UpdatePin}!Arduino\_WPF.ViewModels.SerialConnectionViewViewModel@{Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}}
+\doxysubsubsection{UpdatePin()}
+{\footnotesize\ttfamily void Arduino\+\_\+\+WPF.\+View\+Models.\+Serial\+Connection\+View\+View\+Model.\+Update\+Pin (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{\textbf{ State}}]{state,  }\item[{\textbf{ Pin\+Mode}}]{pin\+Mode }\end{DoxyParamCaption})}
+
+
+
+This method updates the pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em state} & \\
+\hline
+{\em pin\+Mode} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Adrian/\+Documents/git/\+Arduino\+\_\+\+WPF/\+Arduino\+\_\+\+WPF/\+Arduino\+\_\+\+WPF/\+View\+Models/Serial\+Connection\+View\+View\+Model.\+cs\end{DoxyCompactItemize}

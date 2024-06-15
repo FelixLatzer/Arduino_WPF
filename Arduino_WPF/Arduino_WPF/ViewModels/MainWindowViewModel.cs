@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Arduino_WPF.ViewModels;
+
 public class MainWindowViewModel : BaseViewModel
 {
     ICommand ShowComConfigurationViewCommand { get; set; }
