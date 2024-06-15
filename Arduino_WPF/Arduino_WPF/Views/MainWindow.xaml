@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1050">
 
     <Window.Resources>
 
@@ -29,7 +29,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Grid x:Name="GridNavigation" Grid.Row="0">
+        <Grid x:Name="GridNavigation" Grid.Row="0" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -44,7 +44,6 @@
 
         <Grid x:Name="GridView" Grid.Row="1">
             <ContentControl Content="{Binding SelectedViewModel}" Margin="20">
-                
             </ContentControl>
         </Grid>
     </Grid>

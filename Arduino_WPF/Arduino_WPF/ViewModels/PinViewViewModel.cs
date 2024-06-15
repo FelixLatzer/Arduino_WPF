@@ -23,12 +23,6 @@ public class PinViewViewModel : BaseViewModel
     {
         AddPinCommand = new RelayCommand(AddPin);
 
-        Pins = new ObservableCollection<CustomPinViewModel>()
-        {
-            new(1, Models.PinMode.Output, Models.State.High, RemovePin),
-            new(1, Models.PinMode.Output, Models.State.Low, RemovePin)
-        };
-
         _com = com;
     }
 
