@@ -14,20 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Arduino_WPF;
+namespace Arduino_WPF.Views;
 
 /// <summary>
-/// Interaction logic for SerialConnectionView_1.xaml
+/// Interaction logic for SerialConnectionView.xaml
 /// </summary>
 public partial class SerialConnectionView : UserControl
 {
     public SerialConnectionView()
     {
         InitializeComponent();
-
-        // instanciate viewmodel and set the context to it
-        SerialConnectionViewViewModel viewModel = new();
-        this.DataContext = viewModel;
     }
 
     // here is the code behind
