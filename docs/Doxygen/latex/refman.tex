@@ -141,24 +141,6 @@
   \doxynewunicodechar{²}{${}^{2}$}% Superscript two
   \doxynewunicodechar{³}{${}^{3}$}% Superscript three
   % Hyperlinks
-    % Hyperlinks (required, but should be loaded last)
-    \ifpdf
-      \usepackage[pdftex,pagebackref=true]{hyperref}
-    \else
-      \ifxetex
-        \usepackage[pagebackref=true]{hyperref}
-      \else
-        \usepackage[ps2pdf,pagebackref=true]{hyperref}
-      \fi
-    \fi
-    \hypersetup{%
-      colorlinks=true,%
-      linkcolor=blue,%
-      citecolor=blue,%
-      unicode,%
-      pdftitle={Arduino\+\_\+\+WPF},%
-      pdfsubject={}%
-    }
   % Custom commands used by the header
   % Custom commands
   \newcommand{\clearemptydoublepage}{%
@@ -183,12 +165,6 @@
 \begin{document}
   \raggedbottom
   % Titlepage & ToC
-    % To avoid duplicate page anchors due to reuse of same numbers for
-    % the index (be it as roman numbers)
-    \hypersetup{pageanchor=false,
-                bookmarksnumbered=true,
-                pdfencoding=unicode
-               }
   \pagenumbering{alph}
   \begin{titlepage}
   \vspace*{7cm}
@@ -203,8 +179,6 @@
   \tableofcontents
   \clearemptydoublepage
   \pagenumbering{arabic}
-  % re-enable anchors again
-  \hypersetup{pageanchor=true}
 %--- Begin generated contents ---
 \chapter{Namespace Index}
 \input{namespaces}
@@ -214,9 +188,29 @@
 \input{annotated}
 \chapter{Namespace Documentation}
 \input{namespace_arduino___w_p_f}
+\input{namespace_arduino___w_p_f_1_1_models}
+\input{namespace_arduino___w_p_f_1_1_utils}
+\input{namespace_arduino___w_p_f_1_1_view_models}
+\input{namespace_arduino___w_p_f_1_1_views}
+\input{namespace_arduino___w_p_f_1_1_views_1_1_custom_controlls}
+\input{namespace_xaml_generated_namespace}
 \chapter{Class Documentation}
 \input{class_arduino___w_p_f_1_1_app}
-\input{class_arduino___w_p_f_1_1_main_window}
+\input{class_arduino___w_p_f_1_1_view_models_1_1_base_view_model}
+\input{class_arduino___w_p_f_1_1_models_1_1_c_o_m}
+\input{class_arduino___w_p_f_1_1_views_1_1_custom_controlls_1_1_custom_pin}
+\input{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model}
+\input{class_xaml_generated_namespace_1_1_generated_internal_type_helper}
+\input{class_arduino___w_p_f_1_1_views_1_1_custom_controlls_1_1_main_view}
+\input{class_arduino___w_p_f_1_1_views_1_1_main_window}
+\input{class_arduino___w_p_f_1_1_view_models_1_1_main_window_view_model}
+\input{class_arduino___w_p_f_1_1_models_1_1_pin}
+\input{class_arduino___w_p_f_1_1_view_models_1_1_pin_view_view_model}
+\input{class_arduino___w_p_f_1_1_utils_1_1_preset_json_loader}
+\input{class_arduino___w_p_f_1_1_views_1_1_serial_connection_view}
+\input{class_arduino___w_p_f_1_1_views_1_1_serial_connection_view__1}
+\input{class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model}
+\input{class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter}
 %--- End generated contents ---
 % Index
   \backmatter

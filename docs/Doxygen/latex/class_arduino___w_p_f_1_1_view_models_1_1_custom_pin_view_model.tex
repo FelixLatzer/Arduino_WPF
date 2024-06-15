@@ -1,0 +1,91 @@
+\doxysection{Arduino\+\_\+\+WPF.\+View\+Models.\+Custom\+Pin\+View\+Model Class Reference}
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model}\index{Arduino\_WPF.ViewModels.CustomPinViewModel@{Arduino\_WPF.ViewModels.CustomPinViewModel}}
+Inheritance diagram for Arduino\+\_\+\+WPF.\+View\+Models.\+Custom\+Pin\+View\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Custom\+Pin\+View\+Model} (int iD, \textbf{ Pin\+Mode} pin\+Mode, \textbf{ State} state, Action$<$ \textbf{ Custom\+Pin\+View\+Model} $>$ On\+Click\+Exit\+Button)
+\begin{DoxyCompactList}\small\item\em Constructor for the Custom\+Pin\+View\+Model class. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_a56ddd0a9ba6683c58155975b84866913} 
+void {\bfseries Update\+State} ()
+\begin{DoxyCompactList}\small\item\em This method updates the state of the pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_a4f9012ee47371e3c3a9ea1559939bbee} 
+Observable\+Collection$<$ \textbf{ Pin\+Mode} $>$ {\bfseries Pin\+Modes}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_a8fc3452ae51ea16e6b404ffdeb668158} 
+Observable\+Collection$<$ \textbf{ State} $>$ {\bfseries Pin\+States}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_ae33a8d025714bfe3d9ec9255fb3775d6} 
+string {\bfseries Titel}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em This property gets the title of the pin. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_a81ced6eaff218e30c9543cfec40dd92e} 
+int {\bfseries ID}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em This property gets the ID of the pin. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_afd0cdc8d43e5a47a82e9ab2178d11c28} 
+\textbf{ Pin\+Mode} {\bfseries Pin\+Mode}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em This property gets the pin\+Mode of the pin. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_adb9802f957072b3bb68ceef81d9ce285} 
+\textbf{ State} {\bfseries State}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em This property gets the state of the pin. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_a7ea8486a15e0165bb78fc00758b03042} 
+\textbf{ Pin\+Mode} {\bfseries Selected\+Pin\+Mode}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_aaab8029f3a576e697d6ab13ab860772f} 
+\textbf{ State} {\bfseries Selected\+State}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_aa143f69c8d56072e3d57788c248015f6} 
+Date\+Time {\bfseries Last\+Refresh}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em This property gets the last refresh of the pin. \end{DoxyCompactList}\item 
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_a4d5e10ea3c7d689c85f9c20e59003efb} 
+ICommand {\bfseries On\+Click\+Exit\+Button\+Command}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em This property gets the command for the exit button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \textbf{ Arduino\+\_\+\+WPF.\+View\+Models.\+Base\+View\+Model}}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ On\+Property\+Changed} ([Caller\+Member\+Name] string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em This method is called when a property is changed. \end{DoxyCompactList}\item 
+bool \textbf{ Set\+Property$<$ T $>$} (ref T field, T value, [Caller\+Member\+Name] string? property\+Name=null)
+\begin{DoxyCompactList}\small\item\em This method sets the property and calls On\+Property\+Changed if the value is different. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Events inherited from \textbf{ Arduino\+\_\+\+WPF.\+View\+Models.\+Base\+View\+Model}}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler {\bfseries Property\+Changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model_ae8d95c7edd67af55ac4cff5119c3b57a} 
+\index{Arduino\_WPF.ViewModels.CustomPinViewModel@{Arduino\_WPF.ViewModels.CustomPinViewModel}!CustomPinViewModel@{CustomPinViewModel}}
+\index{CustomPinViewModel@{CustomPinViewModel}!Arduino\_WPF.ViewModels.CustomPinViewModel@{Arduino\_WPF.ViewModels.CustomPinViewModel}}
+\doxysubsubsection{CustomPinViewModel()}
+{\footnotesize\ttfamily Arduino\+\_\+\+WPF.\+View\+Models.\+Custom\+Pin\+View\+Model.\+Custom\+Pin\+View\+Model (\begin{DoxyParamCaption}\item[{int}]{iD,  }\item[{\textbf{ Pin\+Mode}}]{pin\+Mode,  }\item[{\textbf{ State}}]{state,  }\item[{Action$<$ \textbf{ Custom\+Pin\+View\+Model} $>$}]{On\+Click\+Exit\+Button }\end{DoxyParamCaption})}
+
+
+
+Constructor for the Custom\+Pin\+View\+Model class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iD} & \\
+\hline
+{\em pin\+Mode} & \\
+\hline
+{\em state} & \\
+\hline
+{\em On\+Click\+Exit\+Button} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Adrian/\+Documents/git/\+Arduino\+\_\+\+WPF/\+Arduino\+\_\+\+WPF/\+Arduino\+\_\+\+WPF/\+View\+Models/Custom\+Pin\+View\+Model.\+cs\end{DoxyCompactItemize}

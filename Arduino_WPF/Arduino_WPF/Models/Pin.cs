@@ -16,6 +16,12 @@ public class Pin
     [JsonIgnore]
     public DateTime LastRefresh { get; set; }
 
+    /// <summary>
+    /// Constructor for the Pin class.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="pinMode"></param>
+    /// <param name="state"></param>
     public Pin(int id, PinMode pinMode, State state)
     {
         ID = id;
@@ -24,6 +30,13 @@ public class Pin
         LastRefresh = DateTime.Now;
     }
 
+    /// <summary>
+    /// Writes the pin data to a JSON string.
+    /// </summary>
+    /// <param name="newState"></param>
+    /// <param name="newPinMode"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public string WritePinData(State newState, PinMode newPinMode)
     {
         if (newState == State.Unknown)
@@ -43,6 +56,11 @@ public class Pin
         return json;
     }
 
+    /// <summary>
+    /// Reads the pin data from a JSON string.
+    /// </summary>
+    /// <param name="json"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public void ReadPinData(string json)
     {
         if (string.IsNullOrWhiteSpace(json))

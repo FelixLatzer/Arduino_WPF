@@ -1,4 +1,11 @@
 var searchData=
 [
-  ['main_0',['Main',['../class_arduino___w_p_f_1_1_app.html#a2a76fb7f11407c97bcdebe8468a4a6d5',1,'Arduino_WPF::App']]]
+  ['clearserialoutput_0',['clearserialoutput',['../class_arduino___w_p_f_1_1_models_1_1_c_o_m.html#a897c3d457f4dcd082b39693f97b1441d',1,'Arduino_WPF.Models.COM.ClearSerialOutput()'],['../class_arduino___w_p_f_1_1_view_models_1_1_serial_connection_view_view_model.html#a85f2a404b1e5a275f9d1ed2eb4df69db',1,'Arduino_WPF.ViewModels.SerialConnectionViewViewModel.ClearSerialOutput()']]],
+  ['closeconnection_1',['CloseConnection',['../class_arduino___w_p_f_1_1_models_1_1_c_o_m.html#adc4e3e1783fdf64b7093a0c5df7bb0ff',1,'Arduino_WPF::Models::COM']]],
+  ['com_2',['COM',['../class_arduino___w_p_f_1_1_models_1_1_c_o_m.html#a048b476b5cd64f07b139d56a3ee0d25c',1,'Arduino_WPF::Models::COM']]],
+  ['convert_3',['Convert',['../class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter.html#aea5d9cd9da79c34081b96992af386915',1,'Arduino_WPF::Utils::StringToVisibilityConverter']]],
+  ['convertback_4',['ConvertBack',['../class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter.html#a7a3feea47bd20d75db361a88ee0b5a6b',1,'Arduino_WPF::Utils::StringToVisibilityConverter']]],
+  ['createdelegate_5',['createdelegate',['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#a8ec4c37e82d9f4e867e9655f4eac3a78',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type delegateType, object target, string handler)'],['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#a8ec4c37e82d9f4e867e9655f4eac3a78',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type delegateType, object target, string handler)']]],
+  ['createinstance_6',['createinstance',['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#aefb7a98fceb9c287cef4756942f441d1',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type type, System.Globalization.CultureInfo culture)'],['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#aefb7a98fceb9c287cef4756942f441d1',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type type, System.Globalization.CultureInfo culture)']]],
+  ['custompinviewmodel_7',['CustomPinViewModel',['../class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model.html#ae8d95c7edd67af55ac4cff5119c3b57a',1,'Arduino_WPF::ViewModels::CustomPinViewModel']]]
 ];

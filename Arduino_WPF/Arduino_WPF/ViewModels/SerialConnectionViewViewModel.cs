@@ -1,4 +1,5 @@
-﻿using Arduino_WPF.Models;
+﻿using Microsoft.Win32;
+using Arduino_WPF.Models;
 using Arduino_WPF.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -6,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Windows;
 using System.Windows.Input;
+using System.IO;
 
 namespace Arduino_WPF.ViewModels;
 
@@ -17,6 +19,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
     public ObservableCollection<State> PinStates { get; private set; }
     private COM? _com;
 
+    /// <summary>
+    /// Gets or sets the baud rate of the serial connection.
+    /// </summary>
     private int _baudRate;
     public int BaudRate
     {
@@ -31,6 +36,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the parity of the serial connection.
+    /// </summary>
     private Parity _parity;
     public Parity Parity
     {
@@ -45,6 +53,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the data bits of the serial connection.
+    /// </summary>
     private int _dataBits;
     public int DataBits
     {
@@ -59,6 +70,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the stop bits of the serial connection.
+    /// </summary>
     private StopBits _stopBits;
     public StopBits StopBits
     {
@@ -73,6 +87,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the selected port of the serial connection.
+    /// </summary>
     private string _selectedPort;
     public string SelectedPort
     {
@@ -87,6 +104,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the serial output.
+    /// </summary>
     private string _serialOutput;
     public string SerialOutput
     {
@@ -101,6 +121,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the selected pin.
+    /// </summary>
     private CustomPinViewModel _selectedPin;
     public CustomPinViewModel SelectedPin
     {
@@ -112,6 +135,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the selected pin mode.
+    /// </summary>
     private PinMode _selectedPinMode;
     public PinMode SelectedPinMode
     {
@@ -123,6 +149,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the selected state.
+    /// </summary>
     private State _selectedState;
     public State SelectedState
     {
@@ -134,6 +163,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the write pin configuration.
+    /// </summary>
     private string _readPinConfiguration;
     public string ReadPinConfiguration
     {
@@ -145,6 +177,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the COM object.
+    /// </summary>
     public COM COM
     {
         get => _com!;
@@ -171,7 +206,11 @@ public class SerialConnectionViewViewModel : BaseViewModel
     public ICommand LoadPresetConfigurationsCommand { get; }
     public PresetJsonLoader SelectedPresetConfiguration { get; set; }
     public List<PresetJsonLoader> PresetConfigurations { get => PresetJsonLoader.GetPresetConfigurations(); }
+    public ICommand LoadConfigurationsFromFileCommand { get; }
 
+    /// <summary>
+    /// This method initializes the SerialConnectionViewViewModel.
+    /// </summary>
     public SerialConnectionViewViewModel()
     {
         ParityValues = new ObservableCollection<Parity>(Enum.GetValues(typeof(Parity)).Cast<Parity>());
@@ -188,6 +227,8 @@ public class SerialConnectionViewViewModel : BaseViewModel
         WritePinCommand = new RelayCommand(WritePinConfiguration);
         ReadPinCommand = new RelayCommand(ReadPinConfigurationFromCOM);
         LoadPresetConfigurationsCommand = new RelayCommand(LoadPresetConfigurations);
+        LoadConfigurationsFromFileCommand = new RelayCommand(LoadConfigurationsFromFile);
+
 
         // Default values
         BaudRate = 9600;
@@ -198,6 +239,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         Task.Run(ReadSerialLoop);
     }
 
+    /// <summary>
+    /// This method opens the COM connection.
+    /// </summary>
     private void OpenCOM()
     {
         if (!string.IsNullOrEmpty(SelectedPort))
@@ -220,6 +264,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method closes the COM connection.
+    /// </summary>
     private void CloseCOM()
     {
         if (COM != null)
@@ -236,6 +283,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method refreshes the pins.
+    /// </summary>
     private void RefreshPins()
     {
         if (COM == null)
@@ -251,6 +301,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method lists the available ports.
+    /// </summary>
     private void ListPorts()
     {
         AvailablePorts.Clear();
@@ -260,17 +313,33 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method adds a pin to the Pins collection.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="pinMode"></param>
+    /// <param name="state"></param>
     public void AddPin(int id, PinMode pinMode, State state)
     {
         var pinViewModel = new CustomPinViewModel(id, pinMode, state, RemovePin);
         Pins.Add(pinViewModel);
     }
 
+    /// <summary>
+    /// This method removes a pin from the Pins collection.
+    /// </summary>
+    /// <param name="pin"></param>
     public void RemovePin(CustomPinViewModel pin)
     {
         Pins.Remove(pin);
     }
 
+    /// <summary>
+    /// This method updates the pin.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="state"></param>
+    /// <param name="pinMode"></param>
     public void UpdatePin(int id, State state, PinMode pinMode)
     {
         var pinViewModel = Pins.FirstOrDefault(p => p.ID == id);
@@ -280,6 +349,10 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method reads the serial output in a loop.
+    /// </summary>
+    /// <returns> Task </returns>
     private async Task ReadSerialLoop()
     {
         while (true)
@@ -300,6 +373,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method clears the serial output.
+    /// </summary>
     public void ClearSerialOutput()
     {
         SerialOutput = string.Empty;
@@ -310,6 +386,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Writes the pin configuration.
+    /// </summary>
     public void WritePinConfiguration()
     {
         if (SelectedPresetConfiguration != null)
@@ -337,6 +416,10 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Parses the JSON configuration.
+    /// </summary>
+    /// <param name="json"></param>
     private void ParseJsonConfiguration(string json)
     {
         var jsonObjects = COM.ExtractJsonObjects(ref json);
@@ -365,6 +448,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
     }
 
 
+    /// <summary>
+    /// Reads the pin configuration from the COM port.
+    /// </summary>
     private void ReadPinConfigurationFromCOM()
     {
         if (COM != null)
@@ -377,6 +463,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Loads the preset configurations.
+    /// </summary>
     private void LoadPresetConfigurations()
     {
         if (SelectedPresetConfiguration != null)
@@ -396,6 +485,53 @@ public class SerialConnectionViewViewModel : BaseViewModel
         else
         {
             MessageBox.Show("Please select a preset configuration.");
+        }
+    }
+
+    /// <summary>
+    /// Loads the configurations from a file.
+    /// </summary>
+    private void LoadConfigurationsFromFile()
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            try
+            {
+                string json = File.ReadAllText(openFileDialog.FileName);
+                ParseJsonConfiguration(json);
+                MessageBox.Show("Configurations loaded successfully.");
+
+                if (COM != null)
+                {
+                    COM.WriteSerialOutput(json);
+                }
+                else
+                {
+                    MessageBox.Show("Please open a connection first.");
+                }
+
+                //string json = File.ReadAllText(openFileDialog.FileName);
+                //ParseJsonConfiguration(json);
+                //MessageBox.Show("Configurations loaded successfully.");
+
+                //if (COM != null)
+                //{
+                //    COM.WriteSerialOutput(json);
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Please open a connection first.");
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load configurations: {ex.Message}");
+            }
         }
     }
 }

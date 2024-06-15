@@ -32,11 +32,18 @@ public class PinViewViewModel : BaseViewModel
         _com = com;
     }
 
+    /// <summary>
+    /// This method adds a pin to the Pins collection.
+    /// </summary>
     private void AddPin()
     {
         Pins.Add(new(1, Models.PinMode.Input, Models.State.Low, RemovePin));
     }
 
+    /// <summary>
+    /// This method removes a pin from the Pins collection.
+    /// </summary>
+    /// <param name="pin"></param>
     private void RemovePin(CustomPinViewModel pin)
     {
         Pins.Remove(pin);
