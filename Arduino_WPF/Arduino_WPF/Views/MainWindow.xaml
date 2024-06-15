@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Arduino_WPF.Views"
+        xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -15,9 +15,9 @@
 
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewmodels:PinViewModel}">
+        <DataTemplate DataType="{x:Type viewmodels:PinViewViewModel}">
 
-            <local:DepartmentView/>
+            <local:PinView/>
 
         </DataTemplate>
 
@@ -38,12 +38,14 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button x:Name="ButtonSerialConnectionView" Content="Serialconnection" Command="" Width="150" Height="30" Grid.Column="0"></Button>
-            <Button x:Name="ButtonPinView" Content="Pins" Command="" Width="150" Height="30" Grid.Column="1"></Button>
+            <Button x:Name="ButtonSerialConnectionView" Content="Serialconnection" Command="{Binding ShowComConfigurationViewCommand}" Width="150" Height="30" Grid.Column="0"></Button>
+            <Button x:Name="ButtonPinView" Content="Pins" Command="{Binding ShowPinViewCommand}" Width="150" Height="30" Grid.Column="1"></Button>
         </Grid>
 
         <Grid x:Name="GridView" Grid.Row="1">
-            
+            <ContentControl Content="{Binding SelectedViewModel}" Margin="20">
+                
+            </ContentControl>
         </Grid>
     </Grid>
 </Window>
