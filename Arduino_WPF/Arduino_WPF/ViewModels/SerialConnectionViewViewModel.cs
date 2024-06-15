@@ -158,6 +158,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
+
     public ICommand OpenCOMCommand { get; }
     public ICommand CloseCOMCommand { get; }
     public ICommand RefreshPinsCommand { get; }
@@ -167,6 +168,9 @@ public class SerialConnectionViewViewModel : BaseViewModel
     public ObservableCollection<StopBits> StopBitsValues { get; private set; }
     public ICommand WritePinCommand { get; }
     public ICommand ReadPinCommand { get; }
+    public ICommand LoadPresetConfigurationsCommand { get; }
+    public PresetJsonLoader SelectedPresetConfiguration { get; set; }
+    public List<PresetJsonLoader> PresetConfigurations { get => PresetJsonLoader.GetPresetConfigurations(); }
 
     public SerialConnectionViewViewModel()
     {
@@ -183,7 +187,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
         ClearSerialOutputCommand = new RelayCommand(ClearSerialOutput);
         WritePinCommand = new RelayCommand(WritePinConfiguration);
         ReadPinCommand = new RelayCommand(ReadPinConfigurationFromCOM);
-
+        LoadPresetConfigurationsCommand = new RelayCommand(LoadPresetConfigurations);
 
         // Default values
         BaudRate = 9600;
@@ -240,55 +244,10 @@ public class SerialConnectionViewViewModel : BaseViewModel
             return;
         }
 
-        Pins.Clear();
-
-        try
+        ReadPinConfiguration = COM.ReadPinConfiguration();
+        if (!string.IsNullOrEmpty(ReadPinConfiguration))
         {
-            string configuration = "";
-            bool jsonReceived = false;
-            int attempts = 0;
-            int maxAttempts = 5;
-
-            while (!jsonReceived && attempts < maxAttempts)
-            {
-                string serialData = COM.ReadSerialOutput();
-                attempts++;
-
-                if (!string.IsNullOrEmpty(serialData))
-                {
-                    configuration += serialData;
-
-                    var jsonObjects = COM.ExtractJsonObjects(ref configuration);
-                    foreach (var pinObject in jsonObjects)
-                    {
-                        int id = (int)pinObject["id"];
-                        PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), (string)pinObject["mode"]);
-                        State state = (State)Enum.Parse(typeof(State), (string)pinObject["state"]);
-
-                        AddPin(id, pinMode, state);
-                    }
-
-                    jsonReceived = !configuration.Contains("{") && !configuration.Contains("}");
-                }
-
-                if (!jsonReceived)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                }
-            }
-
-            if (!jsonReceived)
-            {
-                MessageBox.Show("No valid JSON data received after multiple attempts.");
-            }
-        }
-        catch (JsonReaderException ex)
-        {
-            MessageBox.Show($"Error parsing pin configuration: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"An error occurred: {ex.Message}");
+            ParseJsonConfiguration(ReadPinConfiguration);
         }
     }
 
@@ -333,6 +292,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         SerialOutput += output;
+                        ParseJsonConfiguration(output);
                     });
                 }
             }
@@ -350,38 +310,92 @@ public class SerialConnectionViewViewModel : BaseViewModel
         }
     }
 
-    private void WritePinConfiguration()
+    public void WritePinConfiguration()
     {
-        if (SelectedPin != null)
+        if (SelectedPresetConfiguration != null)
         {
-            var pin = new Pin(SelectedPin.ID, SelectedPinMode, SelectedState);
-            string pinData = pin.WritePinData(SelectedState, SelectedPinMode);
+            var pinData = new[]
+            {
+                new
+                {
+                    Id = SelectedPresetConfiguration.Id,
+                    Mode = SelectedPresetConfiguration.Mode,
+                    State = SelectedPresetConfiguration.State
+                }
+            };
+
+            string pinDataJson = JsonConvert.SerializeObject(pinData);
 
             if (COM != null)
             {
-                COM.WriteSerialOutput(pinData);
+                COM.WriteSerialOutput(pinDataJson);
             }
         }
         else
         {
-            MessageBox.Show("Please select a pin.");
+            MessageBox.Show("Please select a preset configuration.");
         }
     }
+
+    private void ParseJsonConfiguration(string json)
+    {
+        var jsonObjects = COM.ExtractJsonObjects(ref json);
+        foreach (var jsonObject in jsonObjects)
+        {
+            if (jsonObject.ContainsKey("id") && jsonObject.ContainsKey("mode") && jsonObject.ContainsKey("state"))
+            {
+                int id = jsonObject["id"].Value<int>();
+                PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), jsonObject["mode"].Value<string>(), true);
+                State state = (State)jsonObject["state"].Value<int>();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var pinViewModel = Pins.FirstOrDefault(p => p.ID == id);
+                    if (pinViewModel == null)
+                    {
+                        AddPin(id, pinMode, state);
+                    }
+                    else
+                    {
+                        pinViewModel.UpdateState();
+                    }
+                });
+            }
+        }
+    }
+
 
     private void ReadPinConfigurationFromCOM()
     {
         if (COM != null)
         {
-            string configuration = COM.ReadPinConfiguration();
-
-            if (!string.IsNullOrEmpty(configuration))
+            string data = COM.ReadSerialOutput();
+            if (!string.IsNullOrEmpty(data))
             {
-                var pin = new Pin(0, PinMode.Unknown, State.Unknown);
-                pin.ReadPinData(configuration);
-                SelectedPin = Pins.FirstOrDefault(p => p.ID == pin.ID);
-                SelectedPinMode = pin.PinMode;
-                SelectedState = pin.State;
+                ParseJsonConfiguration(data);
             }
+        }
+    }
+
+    private void LoadPresetConfigurations()
+    {
+        if (SelectedPresetConfiguration != null)
+        {
+            var presetConfigurations = new[]
+            {
+                new PresetJsonLoader { Id = SelectedPresetConfiguration.Id, Mode = SelectedPresetConfiguration.Mode, State = SelectedPresetConfiguration.State }
+            };
+
+            string presetConfigurationsJson = JsonConvert.SerializeObject(presetConfigurations);
+
+            if (COM != null)
+            {
+                COM.WriteSerialOutput(presetConfigurationsJson);
+            }
+        }
+        else
+        {
+            MessageBox.Show("Please select a preset configuration.");
         }
     }
 }
