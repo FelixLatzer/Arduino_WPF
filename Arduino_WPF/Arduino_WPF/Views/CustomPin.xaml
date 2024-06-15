@@ -3,43 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Arduino_WPF.Views"
+             xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CustomPinViewModel}"
              mc:Ignorable="d" 
              BorderBrush="Black"
              BorderThickness="1"
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="200" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="30"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
 
-        <Label Name="LabelTitel" Content="{Binding Titel}" Height="30" Width="Auto" Grid.Row="0" Grid.Column="0"></Label>
-        <Button Name="ButtonClose" Command="{Binding OnClickExitButtonCommand}" Content="X" Background="Gray" Grid.Row="0" Grid.Column="3" Height="30" Width="30" HorizontalAlignment="Right"></Button>
+        <Grid x:Name="TopBar" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <Label Name="LabelPinMode" Content="{Binding SelectedPinMode}" Height="50" Width="200" Grid.Column="1" Grid.Row="1"></Label>
-        <ComboBox ItemsSource="{Binding PinModes}" SelectedItem="{Binding SelectedPinMode}" Width="200" Margin="5" Grid.Column="1" Grid.Row="2">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+            <Label Name="LabelTitel" Content="{Binding Titel}" Height="30" Width="Auto" Grid.Column="0"></Label>
+            <Button Name="ButtonClose" Command="{Binding OnClickExitButtonCommand}" CommandParameter="{Binding}" Content="X" Background="Gray" Grid.Column="1" Height="30" Width="30" HorizontalAlignment="Right"></Button>
+        </Grid>
 
-        <Label Name="LabelState" Content="{Binding State}" Height="50" Width="200" Grid.Column="2" Grid.Row="1"></Label>
-        <ComboBox ItemsSource="{Binding PinStates}" SelectedItem="{Binding SelectedState}" Width="200" Margin="5" Grid.Column="2" Grid.Row="2">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <Grid x:Name="Body" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ComboBox ItemsSource="{Binding PinModes}" SelectedItem="{Binding SelectedPinMode}" Width="200" Margin="5" Grid.Column="0" Grid.Row="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <ComboBox ItemsSource="{Binding PinStates}" SelectedItem="{Binding SelectedState}" IsEnabled="{Binding IsPinInput}" Width="200" Margin="5" Grid.Column="1" Grid.Row="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button x:Name="ButtonWritePin" Content="Write pin" Grid.Column="0" Grid.Row="1" Width="200" Margin="5"></Button>
+        </Grid>
     </Grid>
 </UserControl>

@@ -329,8 +329,14 @@ public class SerialConnectionViewViewModel : BaseViewModel
     /// This method removes a pin from the Pins collection.
     /// </summary>
     /// <param name="pin"></param>
-    public void RemovePin(CustomPinViewModel pin)
+    private void RemovePin(object parameter)
     {
+        if (parameter is not CustomPinViewModel || parameter is null)
+        {
+            return;
+        }
+
+        CustomPinViewModel pin = parameter as CustomPinViewModel;
         Pins.Remove(pin);
     }
 

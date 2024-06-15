@@ -8,7 +8,6 @@ namespace Arduino_WPF.ViewModels;
 public class CustomPinViewModel : BaseViewModel
 {
     private readonly Pin _pin;
-    private readonly Action<CustomPinViewModel> _onClickExit;
     public ObservableCollection<PinMode> PinModes { get; private set; }
     public ObservableCollection<State> PinStates { get; private set; }
 
@@ -79,6 +78,7 @@ public class CustomPinViewModel : BaseViewModel
         set
         {
             _selectedPinMode = value;
+            CheckIfPinIsInput();
             OnPropertyChanged();
         }
     }
@@ -93,6 +93,17 @@ public class CustomPinViewModel : BaseViewModel
         set
         {
             _selectedState = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isPinInput;
+    public bool IsPinInput
+    {
+        get => _isPinInput;
+        set
+        {
+            _isPinInput = value;
             OnPropertyChanged();
         }
     }
@@ -118,13 +129,13 @@ public class CustomPinViewModel : BaseViewModel
     /// <param name="pinMode"></param>
     /// <param name="state"></param>
     /// <param name="OnClickExitButton"></param>
-    public CustomPinViewModel(int iD, PinMode pinMode, State state, Action<CustomPinViewModel> OnClickExitButton)
+    public CustomPinViewModel(int iD, PinMode pinMode, State state, Action<object> OnClickExitButton)
     {
         _pin = new(iD, pinMode, state);
-        _onClickExit = OnClickExitButton;
-        OnClickExitButtonCommand = new RelayCommand(OnClickExit);
+        OnClickExitButtonCommand = new RelayCommandWithParameter(OnClickExitButton);
         PinModes = new ObservableCollection<PinMode>(Enum.GetValues(typeof(PinMode)).Cast<PinMode>());
         PinStates = new ObservableCollection<State>(Enum.GetValues(typeof(State)).Cast<State>());
+        CheckIfPinIsInput();
     }
 
     /// <summary>
@@ -139,11 +150,14 @@ public class CustomPinViewModel : BaseViewModel
         OnPropertyChanged(nameof(LastRefresh));
     }
 
-    /// <summary>
-    /// This method is called when the exit button is clicked.
-    /// </summary>
-    private void OnClickExit()
+    private void CheckIfPinIsInput()
     {
-        _onClickExit(this);
+        if (SelectedPinMode == PinMode.Input) 
+        {
+            IsPinInput = false;
+            return;
+        }
+
+        IsPinInput = true;
     }
 }
