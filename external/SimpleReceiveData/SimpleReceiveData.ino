@@ -26,6 +26,8 @@ void loop() {
     String mode = obj["Mode"];
     int state = obj["State"];
 
+    mode.toUpperCase();
+
     Serial.print("Parsed values - Id: ");
     Serial.print(id);
     Serial.print(", Mode: ");

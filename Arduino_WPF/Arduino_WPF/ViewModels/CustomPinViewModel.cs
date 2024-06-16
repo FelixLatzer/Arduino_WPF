@@ -19,7 +19,7 @@ public class CustomPinViewModel : BaseViewModel
     /// </summary>
     public string Titel 
     {
-        get => $"Pin {_pin.ID}";
+        get => $"Pin {_pin.Id}";
     }
 
     /// <summary>
@@ -27,12 +27,12 @@ public class CustomPinViewModel : BaseViewModel
     /// </summary>
     public int ID
     {
-        get => _pin.ID;
+        get => _pin.Id;
         set
         {
-            if (_pin.ID != value)
+            if (_pin.Id != value)
             {
-                _pin.ID = value;
+                _pin.Id = value;
                 OnPropertyChanged();
             }
         }
@@ -43,12 +43,12 @@ public class CustomPinViewModel : BaseViewModel
     /// </summary>
     public PinMode PinMode
     {
-        get => _pin.PinMode;
+        get => _pin.Mode;
         set
         {
-            if (_pin.PinMode != value)
+            if (_pin.Mode != value)
             {
-                _pin.PinMode = value;
+                _pin.Mode = value;
                 OnPropertyChanged();
             }
         }
@@ -64,7 +64,7 @@ public class CustomPinViewModel : BaseViewModel
         {
             if (_pin.State != value)
             {
-                _pin.WritePinData(value, _pin.PinMode);
+                _pin.WritePinData(value, _pin.Mode);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(LastRefresh));
             }
@@ -188,6 +188,6 @@ public class CustomPinViewModel : BaseViewModel
             return;
         }
 
-        _com.WriteSerialOutput(pinDataJson);
+        _com.WriteSerialOutput($"[{pinDataJson}]");
     }
 }

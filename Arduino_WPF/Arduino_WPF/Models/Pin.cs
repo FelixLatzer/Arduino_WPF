@@ -10,9 +10,9 @@ namespace Arduino_WPF.Models;
 
 public class Pin
 {
-    public int ID { get; set; }
-    [JsonConverter(typeof(StringEnumConverter))] public PinMode PinMode { get; set; }
-    [JsonConverter(typeof(StringEnumConverter))] public State State { get; set; }
+    public int Id { get; set; }
+    [JsonConverter(typeof(StringEnumConverter))] public PinMode Mode { get; set; }
+    public State State { get; set; }
     [JsonIgnore] public DateTime LastRefresh { get; set; }
 
     /// <summary>
@@ -23,8 +23,8 @@ public class Pin
     /// <param name="state"></param>
     public Pin(int id, PinMode pinMode, State state)
     {
-        ID = id;
-        PinMode = pinMode;
+        Id = id;
+        Mode = pinMode;
         State = state;
         LastRefresh = DateTime.Now;
     }
@@ -48,8 +48,9 @@ public class Pin
         }
 
         State = newState;
-        PinMode = newPinMode;
+        Mode = newPinMode;
         LastRefresh = DateTime.Now;
+
         string json = JsonConvert.SerializeObject(this);
 
         return json;
@@ -70,8 +71,8 @@ public class Pin
         Pin pin = JsonConvert.DeserializeObject<Pin>(json)!;
         if (pin != null)
         {
-            ID = pin.ID;
-            PinMode = pin.PinMode;
+            Id = pin.Id;
+            Mode = pin.Mode;
             State = pin.State;
             LastRefresh = pin.LastRefresh;
         }
