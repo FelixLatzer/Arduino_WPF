@@ -47,7 +47,7 @@ public class PinViewViewModel : BaseViewModel
             }
         }
 
-        Pins.Add(new(pinId, Models.PinMode.Input, Models.State.Low, RemovePin));
+        Pins.Add(new(pinId, Models.PinMode.Input, Models.State.Low, _com, RemovePin));
     }
 
     /// <summary>

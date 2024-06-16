@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Arduino_WPF.Views" 
-             xmlns:local1="clr-namespace:Arduino_WPF.Utils"
+             xmlns:local1="clr-namespace:Arduino_WPF.Utils" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SerialConnectionViewViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="800">
 

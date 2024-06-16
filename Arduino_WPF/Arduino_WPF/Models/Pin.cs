@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Arduino_WPF.Models;
@@ -11,10 +11,9 @@ namespace Arduino_WPF.Models;
 public class Pin
 {
     public int ID { get; set; }
-    public PinMode PinMode { get; set; }
-    public State State { get; set; }
-    [JsonIgnore]
-    public DateTime LastRefresh { get; set; }
+    [JsonConverter(typeof(StringEnumConverter))] public PinMode PinMode { get; set; }
+    [JsonConverter(typeof(StringEnumConverter))] public State State { get; set; }
+    [JsonIgnore] public DateTime LastRefresh { get; set; }
 
     /// <summary>
     /// Constructor for the Pin class.
@@ -36,22 +35,22 @@ public class Pin
     /// <param name="newState"></param>
     /// <param name="newPinMode"></param>
     /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public string WritePinData(State newState, PinMode newPinMode)
     {
         if (newState == State.Unknown)
         {
-            throw new ArgumentNullException(nameof(newState), "newState cannot be null");
+            throw new ArgumentOutOfRangeException(nameof(newState), "newState cannot be null");
         }
         if (newPinMode == PinMode.Unknown)
         {
-            throw new ArgumentNullException(nameof(newPinMode), "newPinMode cannot be null");
+            throw new ArgumentOutOfRangeException(nameof(newPinMode), "newPinMode cannot be null");
         }
 
         State = newState;
         PinMode = newPinMode;
         LastRefresh = DateTime.Now;
-        string json = JsonSerializer.Serialize(this);
+        string json = JsonConvert.SerializeObject(this);
 
         return json;
     }
@@ -68,7 +67,7 @@ public class Pin
             throw new ArgumentNullException(nameof(json), "json cannot be null or empty");
         }
 
-        Pin pin = JsonSerializer.Deserialize<Pin>(json);
+        Pin pin = JsonConvert.DeserializeObject<Pin>(json)!;
         if (pin != null)
         {
             ID = pin.ID;

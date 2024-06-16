@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Arduino_WPF.Views"
+             xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PinViewViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
@@ -16,56 +16,98 @@
 
             <Image x:Name="ImageArduino" Source="C:\Users\latze\OneDrive\Desktop\Schule\HTL_Rankweil\5.Semester\FSST\Arduino_WPF\project\GPIO\GPIO_LAYOUT_ARDUINO_UNO.png"></Image>
 
-            <Button x:Name="ButtonAddPin" Command="{Binding AddPinCommand}" CommandParameter="0" Canvas.Left="329" Canvas.Top="459" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button x:Name="ButtonAddPin_0" Command="{Binding AddPinCommand}" CommandParameter="0" Canvas.Left="329" Canvas.Top="459" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"></Rectangle>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy" Command="{Binding AddPinCommand}" CommandParameter="1" Canvas.Left="329" Canvas.Top="442" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button x:Name="ButtonAddPin_1" Command="{Binding AddPinCommand}" CommandParameter="1" Canvas.Left="329" Canvas.Top="442" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy1" Command="{Binding AddPinCommand}" CommandParameter="2" Canvas.Left="329" Canvas.Top="425" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button x:Name="ButtonAddPin_2" Command="{Binding AddPinCommand}" CommandParameter="2" Canvas.Left="329" Canvas.Top="425" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy2" Command="{Binding AddPinCommand}" CommandParameter="3" Canvas.Left="329" Canvas.Top="408" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="ButtonAddPin_3" Command="{Binding AddPinCommand}" CommandParameter="3" Canvas.Left="329" Canvas.Top="408" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy3" Command="{Binding AddPinCommand}" CommandParameter="4" Canvas.Left="329" Canvas.Top="391" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="ButtonAddPin_4" Command="{Binding AddPinCommand}" CommandParameter="4" Canvas.Left="329" Canvas.Top="391" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy4" Command="{Binding AddPinCommand}" CommandParameter="5" Canvas.Left="329" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="ButtonAddPin_5" Command="{Binding AddPinCommand}" CommandParameter="5" Canvas.Left="329" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy5" Command="{Binding AddPinCommand}" CommandParameter="6" Canvas.Left="329" Canvas.Top="357" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="ButtonAddPin_6" Command="{Binding AddPinCommand}" CommandParameter="6" Canvas.Left="329" Canvas.Top="357" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="ButtonAddPin_Copy6" Command="{Binding AddPinCommand}" CommandParameter="7" Canvas.Left="329" Canvas.Top="340" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="ButtonAddPin_7" Command="{Binding AddPinCommand}" CommandParameter="7" Canvas.Left="329" Canvas.Top="340" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="15" Height="15" Fill="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="ButtonAddPin_8" Command="{Binding AddPinCommand}" CommandParameter="8" Canvas.Left="329" Canvas.Top="314" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="15" Height="15" Fill="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="ButtonAddPin_9" Command="{Binding AddPinCommand}" CommandParameter="9" Canvas.Left="329" Canvas.Top="297" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="15" Height="15" Fill="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="ButtonAddPin_10" Command="{Binding AddPinCommand}" CommandParameter="10" Canvas.Left="329" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="15" Height="15" Fill="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="ButtonAddPin_11" Command="{Binding AddPinCommand}" CommandParameter="11" Canvas.Left="329" Canvas.Top="263" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="15" Height="15" Fill="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="ButtonAddPin_12" Command="{Binding AddPinCommand}" CommandParameter="12" Canvas.Left="329" Canvas.Top="246" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="15" Height="15" Fill="Green"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="ButtonAddPin_13" Command="{Binding AddPinCommand}" CommandParameter="13" Canvas.Left="329" Canvas.Top="229" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"/>

@@ -17,7 +17,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
     public ObservableCollection<string> AvailablePorts { get; private set; }
     public ObservableCollection<PinMode> PinModes { get; private set; }
     public ObservableCollection<State> PinStates { get; private set; }
-    private COM? _com;
+    private COM _com;
 
     /// <summary>
     /// Gets or sets the baud rate of the serial connection.
@@ -344,7 +344,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
     /// <param name="state"></param>
     public void AddPin(int id, PinMode pinMode, State state)
     {
-        var pinViewModel = new CustomPinViewModel(id, pinMode, state, RemovePin);
+        var pinViewModel = new CustomPinViewModel(id, pinMode, state, _com, RemovePin);
         Pins.Add(pinViewModel);
     }
 

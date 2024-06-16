@@ -12,7 +12,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid x:Name="TopBar" Grid.Row="0">
@@ -51,7 +50,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Button x:Name="ButtonWritePin" Content="Write pin" Grid.Column="0" Grid.Row="1" Width="200" Margin="5"></Button>
+            <Button x:Name="ButtonWritePin" Content="Write pin" Command="{Binding WritePinCommand}" Grid.Column="0" Grid.Row="1" Width="200" Margin="5"></Button>
         </Grid>
     </Grid>
 </UserControl>
