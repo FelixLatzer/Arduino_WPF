@@ -39,6 +39,7 @@ public class MainWindowViewModel : BaseViewModel
         ShowComConfigurationViewCommand = new RelayCommand(ShowSerialConnectionView);
         ShowPinViewCommand = new RelayCommand(ShowPinView);
         _serialConnectionViewViewModel = new SerialConnectionViewViewModel();
+        _pinViewModel = new PinViewViewModel(_serialConnectionViewViewModel.COM);
         SelectedViewModel = _serialConnectionViewViewModel;
     }
 
@@ -49,7 +50,8 @@ public class MainWindowViewModel : BaseViewModel
 
     private void ShowPinView()
     {
-        SelectedViewModel = new PinViewViewModel(_serialConnectionViewViewModel.COM);
+        SelectedViewModel = _pinViewModel;
+        _pinViewModel.COM = _serialConnectionViewViewModel.COM;
     }
 }
 

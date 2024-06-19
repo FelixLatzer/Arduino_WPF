@@ -18,12 +18,12 @@ public class PinViewViewModel : BaseViewModel
 
     public ICommand AddPinCommand { get; set; }
 
-    private COM _com;
+    public COM COM { get; set; }
 
     public PinViewViewModel(COM com)
     {
         AddPinCommand = new RelayCommandWithParameter(AddPin);
-        _com = com;
+        COM = com;
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public class PinViewViewModel : BaseViewModel
     /// </summary>
     private void AddPin(object parameter)
     {
-        if (_com is null)
+        if (COM is null)
         {
             MessageBox.Show("Connect to a COM first!");
             return;
@@ -53,7 +53,7 @@ public class PinViewViewModel : BaseViewModel
             }
         }
 
-        Pins.Add(new(pinId, Models.PinMode.Input, Models.State.Low, _com, RemovePin));
+        Pins.Add(new(pinId, Models.PinMode.Input, Models.State.Low, COM, RemovePin));
     }
 
     /// <summary>

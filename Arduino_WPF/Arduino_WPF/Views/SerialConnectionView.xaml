@@ -52,58 +52,12 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Button Command="{Binding OpenCOMCommand}" Content="Open COM" Width="100" Margin="5"/>
-            <Button Command="{Binding CloseCOMCommand}" Content="Close COM" Width="100" Margin="5"/>
-            <Button Command="{Binding ListPortsCommand}" Content="List Ports" Width="100" Margin="5"/>
-            <Button Command="{Binding RefreshPinsCommand}" Content="Refresh Pins" Width="100" Margin="5"/>
-            <Button Command="{Binding ClearSerialOutputCommand}" Content="Clear Serial Output" Width="100" Margin="5"/>
+            <Button Command="{Binding OpenCOMCommand}" Content="Open COM" Width="200" Margin="5"/>
+            <Button Command="{Binding CloseCOMCommand}" Content="Close COM" Width="200" Margin="5"/>
+            <Button Command="{Binding ListPortsCommand}" Content="List Ports" Width="200" Margin="5"/>
+            <Button Command="{Binding ShowSerialMonitorCommand}" CommandParameter="{Binding COM}" Content="Show Serial Monitor" Width="200" Margin="5"/>
 
-            <ComboBox ItemsSource="{Binding Pins}" SelectedItem="{Binding SelectedPin}" Width="500" Margin="5">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ID}" Margin="5"/>
-                            <TextBlock Text="{Binding PinMode}" Margin="5"/>
-                            <TextBlock Text="{Binding State}" Margin="5"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-
-            <ComboBox ItemsSource="{Binding PinModes}" SelectedItem="{Binding SelectedPinMode}" Width="200" Margin="5">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-
-            <ComboBox ItemsSource="{Binding PinStates}" SelectedItem="{Binding SelectedState}" Width="200" Margin="5">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-
-            <Button Command="{Binding WritePinCommand}" Content="Write Pin" Width="100" Margin="5"/>
             <Button Command="{Binding LoadConfigurationsFromFileCommand}" Content="Load Configurations from File" Width="200" Margin="5"/>
-
-            <ListBox ItemsSource="{Binding PresetConfigurations}" SelectedItem="{Binding SelectedPresetConfiguration}" Height="40" Width="500" Margin="5">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Id}" Margin="5"/>
-                            <TextBlock Text="{Binding Mode}" Margin="5"/>
-                            <TextBlock Text="{Binding State}" Margin="5"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5" MaxWidth="500" Height="100">
-                <TextBox Text="{Binding SerialOutput}" AcceptsReturn="True" TextWrapping="Wrap"/>
-            </ScrollViewer>
         </StackPanel>
     </Grid>
 </UserControl>
