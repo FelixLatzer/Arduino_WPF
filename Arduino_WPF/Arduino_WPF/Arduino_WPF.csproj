@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\GPIO_LAYOUT_ARDUINO_UNO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="C:\Users\latze\OneDrive\Desktop\Schule\HTL_Rankweil\5.Semester\FSST\Arduino_WPF\Arduino_WPF\Arduino_WPF\.editorconfig" />
   </ItemGroup>
 
@@ -21,6 +25,12 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Device.Gpio" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\GPIO_LAYOUT_ARDUINO_UNO.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

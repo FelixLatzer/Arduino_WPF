@@ -31,6 +31,12 @@ public class PinViewViewModel : BaseViewModel
     /// </summary>
     private void AddPin(object parameter)
     {
+        if (_com is null)
+        {
+            MessageBox.Show("Connect to a COM first!");
+            return;
+        }
+
         bool isSuccess = int.TryParse(parameter as string, out var pinId);
 
         if (!isSuccess)

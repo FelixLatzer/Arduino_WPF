@@ -14,9 +14,13 @@
 
         <Canvas x:Name="Overwiev" Grid.Column="0" Width="500">
 
-            <Image x:Name="ImageArduino" Source="C:\Users\latze\OneDrive\Desktop\Schule\HTL_Rankweil\5.Semester\FSST\Arduino_WPF\project\GPIO\GPIO_LAYOUT_ARDUINO_UNO.png"></Image>
+            <Image x:Name="ImageArduino" >
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/GPIO_LAYOUT_ARDUINO_UNO.png"></BitmapImage>
+                </Image.Source>
+            </Image>
 
-            <Button x:Name="ButtonAddPin_0" Command="{Binding AddPinCommand}" CommandParameter="0" Canvas.Left="329" Canvas.Top="459" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="ButtonAddPin_0" Command="{Binding AddPinCommand}" CommandParameter="0" Canvas.Left="329" Canvas.Top="459" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button.Template>
                     <ControlTemplate>
                         <Rectangle Width="15" Height="15" Fill="Green"></Rectangle>
