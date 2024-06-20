@@ -251,6 +251,11 @@ public class SerialConnectionViewViewModel : BaseViewModel
 
     private void OpenSerialMonitor(object parameter)
     {
+        if (COM is null)
+        {
+            MessageBox.Show("Open com first!");
+            return;
+        }
         var serialMonitor = new SerialMonitorWindow(parameter as COM);
         serialMonitor.Show();
     }

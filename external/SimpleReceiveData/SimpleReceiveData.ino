@@ -51,7 +51,7 @@ void loop() {
       response["Id"] = id;
       response["Mode"] = "INPUT";
       response["State"] = pinState;
-      Serial.println(serializeJson(response, Serial));
+      serializeJson(response, Serial);
     } else {
       // Handle unsupported mode
       Serial.println("Unsupported mode received.");

@@ -33,7 +33,6 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
-
     public MainWindowViewModel()
     {
         ShowComConfigurationViewCommand = new RelayCommand(ShowSerialConnectionView);
