@@ -176,6 +176,7 @@ public class CustomPinViewModel : BaseViewModel
             return;
         }
 
+        _pin.State = State.Unknown;
         IsPinInput = true;
     }
 
