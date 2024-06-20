@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" xmlns:fa="http://schemas.fontawesome.io/icons/" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="960">
+        Title="LatSel" Height="600" Width="1050">
 
     <Window.Resources>
 
@@ -28,7 +28,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid x:Name="GridNavigation" Grid.Row="0" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -38,8 +38,20 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button x:Name="ButtonSerialConnectionView" Content="Serialconnection" Command="{Binding ShowComConfigurationViewCommand}" Width="150" Height="30" Grid.Column="0"></Button>
-            <Button x:Name="ButtonPinView" Content="Pins" Command="{Binding ShowPinViewCommand}" Width="150" Height="30" Grid.Column="1"></Button>
+
+            <Button x:Name="ButtonSerialConnectionView" Command="{Binding ShowComConfigurationViewCommand}" Width="200" Height="40" Grid.Column="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <fa:ImageAwesome Icon="Plug" Foreground="Black" Width="20" Height="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="Serial Connection" Foreground="Black" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonPinView" Command="{Binding ShowPinViewCommand}" Width="200" Height="40" Grid.Column="1" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <fa:ImageAwesome Icon="Microchip" Foreground="Black" Width="20" Height="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="Pins" Foreground="Black" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
         </Grid>
 
         <Grid x:Name="GridView" Grid.Row="1">

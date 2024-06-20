@@ -18,9 +18,9 @@ namespace Arduino_WPF.Views;
 /// <summary>
 /// Interaction logic for SerialMonitorWinodw.xaml
 /// </summary>
-public partial class SerialMonitorWinodw : Window
+public partial class SerialMonitorWindow : Window
 {
-    public SerialMonitorWinodw(COM com)
+    public SerialMonitorWindow(COM com)
     {
         InitializeComponent();
 

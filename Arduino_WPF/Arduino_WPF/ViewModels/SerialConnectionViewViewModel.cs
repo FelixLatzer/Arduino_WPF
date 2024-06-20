@@ -251,7 +251,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
 
     private void OpenSerialMonitor(object parameter)
     {
-        var serialMonitor = new SerialMonitorWinodw(parameter as COM);
+        var serialMonitor = new SerialMonitorWindow(parameter as COM);
         serialMonitor.Show();
     }
 

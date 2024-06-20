@@ -1,11 +1,11 @@
-﻿<Window x:Class="Arduino_WPF.Views.SerialMonitorWinodw"
+﻿<Window x:Class="Arduino_WPF.Views.SerialMonitorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Arduino_WPF.Views" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SerialMonitorViewModel}"
         mc:Ignorable="d"
-        Title="SerialMonitorWinodw" Height="300" Width="500">
+        Title="SerialMonitorWindow" Height="300" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
