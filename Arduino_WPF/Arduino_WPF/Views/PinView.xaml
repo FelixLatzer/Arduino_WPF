@@ -121,13 +121,15 @@
         </Canvas>
 
         <Grid x:Name="Details" Grid.Column="1">
-            <ItemsControl Grid.Column="1" ItemsSource="{Binding Pins}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:CustomPin></local:CustomPin>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <ScrollViewer Width="400">
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding Pins}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomPin></local:CustomPin>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid x:Name="TopBar" Grid.Row="0">
@@ -34,7 +35,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <ComboBox ItemsSource="{Binding PinModes}" SelectedItem="{Binding SelectedPinMode}" Width="200" Margin="5" Grid.Column="0" Grid.Row="0">
+            <ComboBox ItemsSource="{Binding PinModes}" SelectedItem="{Binding SelectedPinMode}" Margin="5" Grid.Column="0" Grid.Row="0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
@@ -42,7 +43,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <ComboBox ItemsSource="{Binding PinStates}" SelectedItem="{Binding SelectedState}" IsEnabled="{Binding IsPinInput}" Width="200" Margin="5" Grid.Column="1" Grid.Row="0">
+            <ComboBox ItemsSource="{Binding PinStates}" SelectedItem="{Binding SelectedState}" IsEnabled="{Binding IsPinInput}" Margin="5" Grid.Column="1" Grid.Row="0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
@@ -50,7 +51,9 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Button x:Name="ButtonWritePin" Content="Write pin" Command="{Binding WritePinCommand}" Grid.Column="0" Grid.Row="1" Width="200" Margin="5"></Button>
+            <Button x:Name="ButtonWritePin" Content="Update pin" Command="{Binding WritePinCommand}" Grid.Column="0" Grid.Row="1" Margin="5"></Button>
         </Grid>
+
+        <Label x:Name="LabelLastRefresh" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Content="{Binding LastRefreshText}" Grid.Row="2"></Label>
     </Grid>
 </UserControl>

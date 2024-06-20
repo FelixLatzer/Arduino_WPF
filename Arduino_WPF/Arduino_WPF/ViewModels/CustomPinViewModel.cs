@@ -23,6 +23,14 @@ public class CustomPinViewModel : BaseViewModel
     }
 
     /// <summary>
+    /// This property gets the text for the refresh label
+    /// </summary>
+    public string LastRefreshText
+    {
+        get => $"Last Refresh: {_pin.LastRefresh}";
+    }
+
+    /// <summary>
     /// This property gets the ID of the pin.
     /// </summary>
     public int ID
@@ -189,5 +197,7 @@ public class CustomPinViewModel : BaseViewModel
         }
 
         _com.WriteSerialOutput($"[{pinDataJson}]");
+
+        OnPropertyChanged(nameof(LastRefreshText));
     }
 }
