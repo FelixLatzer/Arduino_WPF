@@ -47,6 +47,11 @@ void loop() {
       Serial.print(id);
       Serial.print(" is: ");
       Serial.println(pinState);
+      StaticJsonDocument<200> response; // create a response object
+      response["Id"] = id;
+      response["Mode"] = "INPUT";
+      response["State"] = pinState;
+      Serial.println(serializeJson(response, Serial));
     } else {
       // Handle unsupported mode
       Serial.println("Unsupported mode received.");
