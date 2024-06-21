@@ -19,14 +19,18 @@
     \subitem {WritePinData}, \hyperpage{21}
   \item {Arduino\_WPF.Utils}, \hyperpage{7}
   \item {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{23}
-    \subitem {GetPresetAnalogConfigurations}, \hyperpage{23}
-    \subitem {GetPresetConfigurations}, \hyperpage{23}
+    \subitem {GetPresetAnalogConfigurations}, \hyperpage{24}
+    \subitem {GetPresetConfigurations}, \hyperpage{24}
     \subitem {LoadConfigurationsFromFile}, \hyperpage{24}
-    \subitem {LoadPresetJsonConfigurations}, \hyperpage{24}
+    \subitem {LoadPresetJsonConfigurations}, \hyperpage{25}
+  \item {Arduino\_WPF.Utils.SerialReader}, \hyperpage{29}
+    \subitem {OnPropertyChanged}, \hyperpage{30}
+    \subitem {ReadSerialLoop}, \hyperpage{30}
+    \subitem {SerialReader}, \hyperpage{29}
   \item {Arduino\_WPF.Utils.StringToVisibilityConverter}, 
-		\hyperpage{28}
-    \subitem {Convert}, \hyperpage{29}
-    \subitem {ConvertBack}, \hyperpage{29}
+		\hyperpage{30}
+    \subitem {Convert}, \hyperpage{31}
+    \subitem {ConvertBack}, \hyperpage{31}
   \item {Arduino\_WPF.ViewModels}, \hyperpage{8}
   \item {Arduino\_WPF.ViewModels.BaseViewModel}, \hyperpage{10}
     \subitem {OnPropertyChanged}, \hyperpage{10}
@@ -35,16 +39,17 @@
     \subitem {CustomPinViewModel}, \hyperpage{16}
   \item {Arduino\_WPF.ViewModels.MainWindowViewModel}, \hyperpage{19}
   \item {Arduino\_WPF.ViewModels.PinViewViewModel}, \hyperpage{22}
+    \subitem {PinViewViewModel}, \hyperpage{23}
   \item {Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}, 
-		\hyperpage{25}
-  \item {Arduino\_WPF.ViewModels.SerialMonitorViewModel}, 
 		\hyperpage{26}
+  \item {Arduino\_WPF.ViewModels.SerialMonitorViewModel}, 
+		\hyperpage{27}
   \item {Arduino\_WPF.Views}, \hyperpage{8}
   \item {Arduino\_WPF.Views.CustomPin}, \hyperpage{14}
   \item {Arduino\_WPF.Views.MainWindow}, \hyperpage{18}
-  \item {Arduino\_WPF.Views.PinView}, \hyperpage{21}
-  \item {Arduino\_WPF.Views.SerialConnectionView}, \hyperpage{24}
-  \item {Arduino\_WPF.Views.SerialMonitorWindow}, \hyperpage{27}
+  \item {Arduino\_WPF.Views.PinView}, \hyperpage{22}
+  \item {Arduino\_WPF.Views.SerialConnectionView}, \hyperpage{25}
+  \item {Arduino\_WPF.Views.SerialMonitorWindow}, \hyperpage{28}
   \item {Arduino\_WPF.Views.SerialMonitorWinodw}, \hyperpage{28}
 
   \indexspace
@@ -53,10 +58,10 @@
     \subitem {Arduino\_WPF.Models.COM}, \hyperpage{12}
   \item {Convert}
     \subitem {Arduino\_WPF.Utils.StringToVisibilityConverter}, 
-		\hyperpage{29}
+		\hyperpage{31}
   \item {ConvertBack}
     \subitem {Arduino\_WPF.Utils.StringToVisibilityConverter}, 
-		\hyperpage{29}
+		\hyperpage{31}
   \item {CustomPinViewModel}
     \subitem {Arduino\_WPF.ViewModels.CustomPinViewModel}, 
 		\hyperpage{16}
@@ -69,9 +74,9 @@
   \indexspace
 
   \item {GetPresetAnalogConfigurations}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{23}
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{24}
   \item {GetPresetConfigurations}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{23}
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{24}
 
   \indexspace
 
@@ -80,17 +85,20 @@
   \item {LoadConfigurationsFromFile}
     \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{24}
   \item {LoadPresetJsonConfigurations}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{24}
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{25}
 
   \indexspace
 
   \item {OnPropertyChanged}
+    \subitem {Arduino\_WPF.Utils.SerialReader}, \hyperpage{30}
     \subitem {Arduino\_WPF.ViewModels.BaseViewModel}, \hyperpage{10}
 
   \indexspace
 
   \item {Pin}
     \subitem {Arduino\_WPF.Models.Pin}, \hyperpage{20}
+  \item {PinViewViewModel}
+    \subitem {Arduino\_WPF.ViewModels.PinViewViewModel}, \hyperpage{23}
 
   \indexspace
 
@@ -98,11 +106,15 @@
     \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
   \item {ReadPinData}
     \subitem {Arduino\_WPF.Models.Pin}, \hyperpage{21}
+  \item {ReadSerialLoop}
+    \subitem {Arduino\_WPF.Utils.SerialReader}, \hyperpage{30}
   \item {ReadSerialOutput}
     \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
 
   \indexspace
 
+  \item {SerialReader}
+    \subitem {Arduino\_WPF.Utils.SerialReader}, \hyperpage{29}
   \item {SetBaudrate}
     \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
   \item {SetDataBits}
