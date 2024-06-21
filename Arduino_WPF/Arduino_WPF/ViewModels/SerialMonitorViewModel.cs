@@ -32,11 +32,13 @@ public class SerialMonitorViewModel : BaseViewModel
     }
 
     public ICommand ClearSerialOutputCommand { get; }
+    public ICommand CopyResultToClipboardCommand { get; }
 
     public SerialMonitorViewModel(COM com)
     {
         _com = com;
         ClearSerialOutputCommand = new RelayCommand(ClearSerialOutput);
+        CopyResultToClipboardCommand = new RelayCommand(CopyResultToClipboard);
         Task.Run(ReadSerialLoop);
     }
 
@@ -71,6 +73,21 @@ public class SerialMonitorViewModel : BaseViewModel
         if (_com != null)
         {
             _com.ClearSerialOutput();
+        }
+    }
+
+    /// <summary>
+    /// This method copies the result to the clipboard.
+    /// </summary>
+    public void CopyResultToClipboard()
+    {
+        if (!string.IsNullOrEmpty(SerialOutput))
+        {
+            Clipboard.SetText(SerialOutput);
+        }
+        else
+        {
+            MessageBox.Show("No data to copy.");
         }
     }
 

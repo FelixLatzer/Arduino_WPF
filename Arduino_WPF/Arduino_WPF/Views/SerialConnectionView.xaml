@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Arduino_WPF.Views" 
-             xmlns:local1="clr-namespace:Arduino_WPF.Utils" xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SerialConnectionViewViewModel}"
+             xmlns:local1="clr-namespace:Arduino_WPF.Utils" 
+             xmlns:viewmodels="clr-namespace:Arduino_WPF.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:SerialConnectionViewViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="800">
 
@@ -14,49 +16,87 @@
 
     <Grid>
         <StackPanel>
-            <ComboBox ItemsSource="{Binding AvailablePorts}" SelectedItem="{Binding SelectedPort}" Width="200" Margin="5"/>
+            <Grid Margin="5" Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Ports" 
+                           Foreground="Gray" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Right"
+                           Margin="0,0,5,0"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding AvailablePorts}" SelectedItem="{Binding SelectedPort}" Width="200" Margin="20,0,100,0"/>
+            </Grid>
 
-            <Grid Margin="5" Width="200">
-                <TextBox Text="{Binding BaudRate, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid Margin="5" Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="Baud Rate" 
                            Foreground="Gray" 
-                           IsHitTestVisible="False"
                            VerticalAlignment="Center" 
-                           Margin="5,0,0,0" 
-                           Visibility="{Binding BaudRate, Converter={StaticResource StringToVisibilityConverter}}"/>
+                           HorizontalAlignment="Right"
+                           Margin="0,0,5,0"/>
+                <TextBox Grid.Column="1" Text="{Binding BaudRate, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="20,0,100,0"/>
             </Grid>
 
-            <ComboBox ItemsSource="{Binding ParityValues}" SelectedItem="{Binding Parity}" Width="200" Margin="5">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <Grid Margin="5" Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Parity" 
+                           Foreground="Gray" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Right"
+                           Margin="0,0,5,0"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding ParityValues}" SelectedItem="{Binding Parity}" Width="200" Margin="20,0,100,0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
 
-            <Grid Margin="5" Width="200">
-                <TextBox Text="{Binding DataBits, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid Margin="5" Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="Data Bits" 
                            Foreground="Gray" 
-                           IsHitTestVisible="False"
                            VerticalAlignment="Center" 
-                           Margin="5,0,0,0" 
-                           Visibility="{Binding DataBits, Converter={StaticResource StringToVisibilityConverter}}"/>
+                           HorizontalAlignment="Right"
+                           Margin="0,0,5,0"/>
+                <TextBox Grid.Column="1" Text="{Binding DataBits, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="20,0,100,0"/>
             </Grid>
 
-            <ComboBox ItemsSource="{Binding StopBitsValues}" SelectedItem="{Binding StopBits}" Width="200" Margin="5">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <Grid Margin="5" Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Stop Bits" 
+                           Foreground="Gray" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Right"
+                           Margin="0,0,5,0"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding StopBitsValues}" SelectedItem="{Binding StopBits}" Width="200" Margin="20,0,100,0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
 
             <Button Command="{Binding OpenCOMCommand}" Content="Open COM" Width="200" Margin="5"/>
             <Button Command="{Binding CloseCOMCommand}" Content="Close COM" Width="200" Margin="5"/>
             <Button Command="{Binding ListPortsCommand}" Content="List Ports" Width="200" Margin="5"/>
             <Button Command="{Binding ShowSerialMonitorCommand}" CommandParameter="{Binding COM}" Content="Show Serial Monitor" Width="200" Margin="5"/>
-
             <Button Command="{Binding LoadConfigurationsFromFileCommand}" Content="Load Configurations from File" Width="200" Margin="5"/>
         </StackPanel>
     </Grid>
