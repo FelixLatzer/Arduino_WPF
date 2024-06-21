@@ -1,135 +1,128 @@
 \begin{theindex}
 
-  \item {AddPin}
-    \subitem {Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}, 
-		26
-  \item {Arduino\_WPF}, 7
-  \item {Arduino\_WPF.App}, 9
-  \item {Arduino\_WPF.Models}, 7
-  \item {Arduino\_WPF.Models.COM}, 11
-    \subitem {COM}, 12
-    \subitem {ExtractJsonObjects}, 12
-    \subitem {ListOpenPorts}, 12
-    \subitem {ReadPinConfiguration}, 13
-    \subitem {ReadSerialOutput}, 13
-    \subitem {SetBaudrate}, 13
-    \subitem {SetDataBits}, 13
-    \subitem {SetParity}, 14
-    \subitem {WriteSerialOutput}, 14
-  \item {Arduino\_WPF.Models.Pin}, 20
-    \subitem {Pin}, 20
-    \subitem {ReadPinData}, 20
-    \subitem {WritePinData}, 21
-  \item {Arduino\_WPF.Utils}, 7
-  \item {Arduino\_WPF.Utils.PresetJsonLoader}, 22
-    \subitem {GetPresetAnalogConfigurations}, 23
-    \subitem {GetPresetConfigurations}, 23
-    \subitem {LoadConfigurationsFromFile}, 23
-    \subitem {LoadPresetJsonConfigurations}, 23
-  \item {Arduino\_WPF.Utils.StringToVisibilityConverter}, 27
-    \subitem {Convert}, 28
-    \subitem {ConvertBack}, 28
-  \item {Arduino\_WPF.ViewModels}, 8
-  \item {Arduino\_WPF.ViewModels.BaseViewModel}, 10
-    \subitem {OnPropertyChanged}, 10
-    \subitem {SetProperty$<$ T $>$}, 10
-  \item {Arduino\_WPF.ViewModels.CustomPinViewModel}, 15
-    \subitem {CustomPinViewModel}, 16
-  \item {Arduino\_WPF.ViewModels.MainWindowViewModel}, 19
-  \item {Arduino\_WPF.ViewModels.PinViewViewModel}, 21
-  \item {Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}, 25
-    \subitem {AddPin}, 26
-    \subitem {RemovePin}, 27
-    \subitem {UpdatePin}, 27
-  \item {Arduino\_WPF.Views}, 8
-  \item {Arduino\_WPF.Views.CustomControlls}, 8
-  \item {Arduino\_WPF.Views.CustomControlls.CustomPin}, 14
-  \item {Arduino\_WPF.Views.CustomControlls.MainView}, 17
-  \item {Arduino\_WPF.Views.MainWindow}, 18
-  \item {Arduino\_WPF.Views.SerialConnectionView}, 24
-  \item {Arduino\_WPF.Views.SerialConnectionView\_1}, 24
+  \item {Arduino\_WPF}, \hyperpage{7}
+  \item {Arduino\_WPF.App}, \hyperpage{9}
+  \item {Arduino\_WPF.Models}, \hyperpage{7}
+  \item {Arduino\_WPF.Models.COM}, \hyperpage{11}
+    \subitem {COM}, \hyperpage{12}
+    \subitem {ExtractJsonObjects}, \hyperpage{12}
+    \subitem {ListOpenPorts}, \hyperpage{12}
+    \subitem {ReadPinConfiguration}, \hyperpage{13}
+    \subitem {ReadSerialOutput}, \hyperpage{13}
+    \subitem {SetBaudrate}, \hyperpage{13}
+    \subitem {SetDataBits}, \hyperpage{13}
+    \subitem {SetParity}, \hyperpage{14}
+    \subitem {WriteSerialOutput}, \hyperpage{14}
+  \item {Arduino\_WPF.Models.Pin}, \hyperpage{20}
+    \subitem {Pin}, \hyperpage{20}
+    \subitem {ReadPinData}, \hyperpage{21}
+    \subitem {WritePinData}, \hyperpage{21}
+  \item {Arduino\_WPF.Utils}, \hyperpage{7}
+  \item {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{23}
+    \subitem {GetPresetAnalogConfigurations}, \hyperpage{23}
+    \subitem {GetPresetConfigurations}, \hyperpage{23}
+    \subitem {LoadConfigurationsFromFile}, \hyperpage{24}
+    \subitem {LoadPresetJsonConfigurations}, \hyperpage{24}
+  \item {Arduino\_WPF.Utils.StringToVisibilityConverter}, 
+		\hyperpage{28}
+    \subitem {Convert}, \hyperpage{29}
+    \subitem {ConvertBack}, \hyperpage{29}
+  \item {Arduino\_WPF.ViewModels}, \hyperpage{8}
+  \item {Arduino\_WPF.ViewModels.BaseViewModel}, \hyperpage{10}
+    \subitem {OnPropertyChanged}, \hyperpage{10}
+    \subitem {SetProperty$<$ T $>$}, \hyperpage{10}
+  \item {Arduino\_WPF.ViewModels.CustomPinViewModel}, \hyperpage{15}
+    \subitem {CustomPinViewModel}, \hyperpage{16}
+  \item {Arduino\_WPF.ViewModels.MainWindowViewModel}, \hyperpage{19}
+  \item {Arduino\_WPF.ViewModels.PinViewViewModel}, \hyperpage{22}
+  \item {Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}, 
+		\hyperpage{25}
+  \item {Arduino\_WPF.ViewModels.SerialMonitorViewModel}, 
+		\hyperpage{26}
+  \item {Arduino\_WPF.Views}, \hyperpage{8}
+  \item {Arduino\_WPF.Views.CustomPin}, \hyperpage{14}
+  \item {Arduino\_WPF.Views.MainWindow}, \hyperpage{18}
+  \item {Arduino\_WPF.Views.PinView}, \hyperpage{21}
+  \item {Arduino\_WPF.Views.SerialConnectionView}, \hyperpage{24}
+  \item {Arduino\_WPF.Views.SerialMonitorWindow}, \hyperpage{27}
+  \item {Arduino\_WPF.Views.SerialMonitorWinodw}, \hyperpage{28}
 
   \indexspace
 
   \item {COM}
-    \subitem {Arduino\_WPF.Models.COM}, 12
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{12}
   \item {Convert}
-    \subitem {Arduino\_WPF.Utils.StringToVisibilityConverter}, 28
+    \subitem {Arduino\_WPF.Utils.StringToVisibilityConverter}, 
+		\hyperpage{29}
   \item {ConvertBack}
-    \subitem {Arduino\_WPF.Utils.StringToVisibilityConverter}, 28
+    \subitem {Arduino\_WPF.Utils.StringToVisibilityConverter}, 
+		\hyperpage{29}
   \item {CustomPinViewModel}
-    \subitem {Arduino\_WPF.ViewModels.CustomPinViewModel}, 16
+    \subitem {Arduino\_WPF.ViewModels.CustomPinViewModel}, 
+		\hyperpage{16}
 
   \indexspace
 
   \item {ExtractJsonObjects}
-    \subitem {Arduino\_WPF.Models.COM}, 12
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{12}
 
   \indexspace
 
   \item {GetPresetAnalogConfigurations}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, 23
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{23}
   \item {GetPresetConfigurations}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, 23
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{23}
 
   \indexspace
 
   \item {ListOpenPorts}
-    \subitem {Arduino\_WPF.Models.COM}, 12
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{12}
   \item {LoadConfigurationsFromFile}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, 23
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{24}
   \item {LoadPresetJsonConfigurations}
-    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, 23
+    \subitem {Arduino\_WPF.Utils.PresetJsonLoader}, \hyperpage{24}
 
   \indexspace
 
   \item {OnPropertyChanged}
-    \subitem {Arduino\_WPF.ViewModels.BaseViewModel}, 10
+    \subitem {Arduino\_WPF.ViewModels.BaseViewModel}, \hyperpage{10}
 
   \indexspace
 
   \item {Pin}
-    \subitem {Arduino\_WPF.Models.Pin}, 20
+    \subitem {Arduino\_WPF.Models.Pin}, \hyperpage{20}
 
   \indexspace
 
   \item {ReadPinConfiguration}
-    \subitem {Arduino\_WPF.Models.COM}, 13
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
   \item {ReadPinData}
-    \subitem {Arduino\_WPF.Models.Pin}, 20
+    \subitem {Arduino\_WPF.Models.Pin}, \hyperpage{21}
   \item {ReadSerialOutput}
-    \subitem {Arduino\_WPF.Models.COM}, 13
-  \item {RemovePin}
-    \subitem {Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}, 
-		27
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
 
   \indexspace
 
   \item {SetBaudrate}
-    \subitem {Arduino\_WPF.Models.COM}, 13
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
   \item {SetDataBits}
-    \subitem {Arduino\_WPF.Models.COM}, 13
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{13}
   \item {SetParity}
-    \subitem {Arduino\_WPF.Models.COM}, 14
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{14}
   \item {SetProperty$<$ T $>$}
-    \subitem {Arduino\_WPF.ViewModels.BaseViewModel}, 10
-
-  \indexspace
-
-  \item {UpdatePin}
-    \subitem {Arduino\_WPF.ViewModels.SerialConnectionViewViewModel}, 
-		27
+    \subitem {Arduino\_WPF.ViewModels.BaseViewModel}, \hyperpage{10}
 
   \indexspace
 
   \item {WritePinData}
-    \subitem {Arduino\_WPF.Models.Pin}, 21
+    \subitem {Arduino\_WPF.Models.Pin}, \hyperpage{21}
   \item {WriteSerialOutput}
-    \subitem {Arduino\_WPF.Models.COM}, 14
+    \subitem {Arduino\_WPF.Models.COM}, \hyperpage{14}
 
   \indexspace
 
-  \item {XamlGeneratedNamespace}, 8
-  \item {XamlGeneratedNamespace.GeneratedInternalTypeHelper}, 16
+  \item {XamlGeneratedNamespace}, \hyperpage{8}
+  \item {XamlGeneratedNamespace.GeneratedInternalTypeHelper}, 
+		\hyperpage{17}
 
 \end{theindex}
