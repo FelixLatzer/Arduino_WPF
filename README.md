@@ -128,6 +128,9 @@ HTTP error 429 for prompt `features`
     │   │   │   ├── class_arduino___w_p_f_1_1_models_1_1_pin.html
     │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_preset_json_loader-members.html
     │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_preset_json_loader.html
+    │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_serial_reader-members.html
+    │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_serial_reader.html
+    │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_serial_reader.png
     │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter-members.html
     │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter.html
     │   │   │   ├── class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter.png
@@ -313,6 +316,9 @@ HTTP error 429 for prompt `features`
     │   │       ├── class_arduino___w_p_f_1_1_models_1_1_c_o_m.tex
     │   │       ├── class_arduino___w_p_f_1_1_models_1_1_pin.tex
     │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_preset_json_loader.tex
+    │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_serial_reader.eps
+    │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_serial_reader.pdf
+    │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_serial_reader.tex
     │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter-eps-converted-to.pdf
     │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter.eps
     │   │       ├── class_arduino___w_p_f_1_1_utils_1_1_string_to_visibility_converter.pdf
