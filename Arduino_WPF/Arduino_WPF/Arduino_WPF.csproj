@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Icons\microchip_icon_198974.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,10 @@
 
   <ItemGroup>
     <None Remove="Images\GPIO_LAYOUT_ARDUINO_UNO.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icons\microchip_icon_198974.ico" />
   </ItemGroup>
 
   <ItemGroup>
