@@ -64,6 +64,8 @@ HTTP error 429 for prompt `features`
     │   │   ├── App.xaml.cs
     │   │   ├── Arduino_WPF.csproj
     │   │   ├── AssemblyInfo.cs
+    │   │   ├── Icons
+    │   │   │   └── microchip_icon_198974.ico
     │   │   ├── Images
     │   │   │   └── GPIO_LAYOUT_ARDUINO_UNO.png
     │   │   ├── McuConfigs
@@ -80,6 +82,7 @@ HTTP error 429 for prompt `features`
     │   │   │   ├── PresetJsonLoader.cs
     │   │   │   ├── RelayCommand.cs
     │   │   │   ├── RelayCommandWithParameter.cs
+    │   │   │   ├── SerialReader.cs
     │   │   │   └── StringToVisibilityConverter.cs
     │   │   ├── ViewModels
     │   │   │   ├── BaseViewModel.cs
@@ -101,6 +104,7 @@ HTTP error 429 for prompt `features`
     │   │       └── SerialMonitorWindow.xaml.cs
     │   └── Arduino_WPF.sln
     ├── LICENSE
+    ├── README.md
     ├── docs
     │   ├── Control a Microcrontroller over WPF.docx
     │   ├── Control a Microcrontroller over WPF.pdf
@@ -520,6 +524,7 @@ HTTP error 429 for prompt `features`
 | [StringToVisibilityConverter.cs](https://github.com/FelixLatzer/Arduino_WPF/blob/master/Arduino_WPF/Arduino_WPF/Utils/StringToVisibilityConverter.cs) | HTTP error 429 for prompt `Arduino_WPF/Arduino_WPF/Utils/StringToVisibilityConverter.cs` |
 | [RelayCommandWithParameter.cs](https://github.com/FelixLatzer/Arduino_WPF/blob/master/Arduino_WPF/Arduino_WPF/Utils/RelayCommandWithParameter.cs)     | HTTP error 429 for prompt `Arduino_WPF/Arduino_WPF/Utils/RelayCommandWithParameter.cs`   |
 | [PresetJsonLoader.cs](https://github.com/FelixLatzer/Arduino_WPF/blob/master/Arduino_WPF/Arduino_WPF/Utils/PresetJsonLoader.cs)                       | HTTP error 429 for prompt `Arduino_WPF/Arduino_WPF/Utils/PresetJsonLoader.cs`            |
+| [SerialReader.cs](https://github.com/FelixLatzer/Arduino_WPF/blob/master/Arduino_WPF/Arduino_WPF/Utils/SerialReader.cs)                               | HTTP error 429 for prompt `Arduino_WPF/Arduino_WPF/Utils/SerialReader.cs`                |
 
 </details>
 
