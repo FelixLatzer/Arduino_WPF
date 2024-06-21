@@ -92,13 +92,17 @@ Inheritance diagram for Arduino_WPF.ViewModels.CustomPinViewModel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae8d95c7edd67af55ac4cff5119c3b57a" id="r_ae8d95c7edd67af55ac4cff5119c3b57a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model.html#ae8d95c7edd67af55ac4cff5119c3b57a">CustomPinViewModel</a> (int iD, <a class="el" href="namespace_arduino___w_p_f_1_1_models.html#a6f7ecb043da9aa7822bd1614e0c94dfd">PinMode</a> pinMode, <a class="el" href="namespace_arduino___w_p_f_1_1_models.html#aee62ccf85a86a3fdabab7e4408c629b3">State</a> state, Action&lt; <a class="el" href="class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model.html">CustomPinViewModel</a> &gt; OnClickExitButton)</td></tr>
-<tr class="memdesc:ae8d95c7edd67af55ac4cff5119c3b57a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the CustomPinViewModel class.  <br /></td></tr>
-<tr class="separator:ae8d95c7edd67af55ac4cff5119c3b57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03844833900d585d5856f12597df380c" id="r_a03844833900d585d5856f12597df380c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model.html#a03844833900d585d5856f12597df380c">CustomPinViewModel</a> (int iD, <a class="el" href="namespace_arduino___w_p_f_1_1_models.html#a6f7ecb043da9aa7822bd1614e0c94dfd">PinMode</a> pinMode, <a class="el" href="namespace_arduino___w_p_f_1_1_models.html#aee62ccf85a86a3fdabab7e4408c629b3">State</a> state, <a class="el" href="class_arduino___w_p_f_1_1_models_1_1_c_o_m.html">COM</a> com, Action&lt; object &gt; OnClickExitButton)</td></tr>
+<tr class="memdesc:a03844833900d585d5856f12597df380c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the CustomPinViewModel class.  <br /></td></tr>
+<tr class="separator:a03844833900d585d5856f12597df380c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56ddd0a9ba6683c58155975b84866913" id="r_a56ddd0a9ba6683c58155975b84866913"><td class="memItemLeft" align="right" valign="top"><a id="a56ddd0a9ba6683c58155975b84866913" name="a56ddd0a9ba6683c58155975b84866913"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateState</b> ()</td></tr>
 <tr class="memdesc:a56ddd0a9ba6683c58155975b84866913"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method updates the state of the pin. <br /></td></tr>
 <tr class="separator:a56ddd0a9ba6683c58155975b84866913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a362cee5e267b3df106655a4f36e0ed13" id="r_a362cee5e267b3df106655a4f36e0ed13"><td class="memItemLeft" align="right" valign="top"><a id="a362cee5e267b3df106655a4f36e0ed13" name="a362cee5e267b3df106655a4f36e0ed13"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>WritePin</b> ()</td></tr>
+<tr class="memdesc:a362cee5e267b3df106655a4f36e0ed13"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method writes the configured PinData to the Microcontroller. <br /></td></tr>
+<tr class="separator:a362cee5e267b3df106655a4f36e0ed13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
@@ -112,6 +116,10 @@ ObservableCollection&lt; <a class="el" href="namespace_arduino___w_p_f_1_1_model
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Titel</b><code> [get]</code></td></tr>
 <tr class="memdesc:ae33a8d025714bfe3d9ec9255fb3775d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This property gets the title of the pin. <br /></td></tr>
 <tr class="separator:ae33a8d025714bfe3d9ec9255fb3775d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf37ba28b8dd5738450230a1b14cb353" id="r_abf37ba28b8dd5738450230a1b14cb353"><td class="memItemLeft" align="right" valign="top"><a id="abf37ba28b8dd5738450230a1b14cb353" name="abf37ba28b8dd5738450230a1b14cb353"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>LastRefreshText</b><code> [get]</code></td></tr>
+<tr class="memdesc:abf37ba28b8dd5738450230a1b14cb353"><td class="mdescLeft">&#160;</td><td class="mdescRight">This property gets the text for the refresh label. <br /></td></tr>
+<tr class="separator:abf37ba28b8dd5738450230a1b14cb353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81ced6eaff218e30c9543cfec40dd92e" id="r_a81ced6eaff218e30c9543cfec40dd92e"><td class="memItemLeft" align="right" valign="top"><a id="a81ced6eaff218e30c9543cfec40dd92e" name="a81ced6eaff218e30c9543cfec40dd92e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b><code> [get, set]</code></td></tr>
 <tr class="memdesc:a81ced6eaff218e30c9543cfec40dd92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This property gets the ID of the pin. <br /></td></tr>
@@ -130,6 +138,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b><code> [get, set
 <tr class="memitem:aaab8029f3a576e697d6ab13ab860772f" id="r_aaab8029f3a576e697d6ab13ab860772f"><td class="memItemLeft" align="right" valign="top"><a id="aaab8029f3a576e697d6ab13ab860772f" name="aaab8029f3a576e697d6ab13ab860772f"></a>
 <a class="el" href="namespace_arduino___w_p_f_1_1_models.html#aee62ccf85a86a3fdabab7e4408c629b3">State</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedState</b><code> [get, set]</code></td></tr>
 <tr class="separator:aaab8029f3a576e697d6ab13ab860772f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f10e01e620ae841c87e81a4cbf24df5" id="r_a7f10e01e620ae841c87e81a4cbf24df5"><td class="memItemLeft" align="right" valign="top"><a id="a7f10e01e620ae841c87e81a4cbf24df5" name="a7f10e01e620ae841c87e81a4cbf24df5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsPinInput</b><code> [get, set]</code></td></tr>
+<tr class="separator:a7f10e01e620ae841c87e81a4cbf24df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa143f69c8d56072e3d57788c248015f6" id="r_aa143f69c8d56072e3d57788c248015f6"><td class="memItemLeft" align="right" valign="top"><a id="aa143f69c8d56072e3d57788c248015f6" name="aa143f69c8d56072e3d57788c248015f6"></a>
 DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>LastRefresh</b><code> [get]</code></td></tr>
 <tr class="memdesc:aa143f69c8d56072e3d57788c248015f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This property gets the last refresh of the pin. <br /></td></tr>
@@ -138,6 +149,10 @@ DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>LastRefresh</b><c
 ICommand&#160;</td><td class="memItemRight" valign="bottom"><b>OnClickExitButtonCommand</b><code> [get, set]</code></td></tr>
 <tr class="memdesc:a4d5e10ea3c7d689c85f9c20e59003efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This property gets the command for the exit button. <br /></td></tr>
 <tr class="separator:a4d5e10ea3c7d689c85f9c20e59003efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac65b6fa8e8b80f5d8510948ee04b1c9e" id="r_ac65b6fa8e8b80f5d8510948ee04b1c9e"><td class="memItemLeft" align="right" valign="top"><a id="ac65b6fa8e8b80f5d8510948ee04b1c9e" name="ac65b6fa8e8b80f5d8510948ee04b1c9e"></a>
+ICommand&#160;</td><td class="memItemRight" valign="bottom"><b>WritePinCommand</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac65b6fa8e8b80f5d8510948ee04b1c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This property gets the command for the Write pin button. <br /></td></tr>
+<tr class="separator:ac65b6fa8e8b80f5d8510948ee04b1c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -154,8 +169,8 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="separator:ab09f7c67cd6d389c115fc6b6e09cae11 inherit events_class_arduino___w_p_f_1_1_view_models_1_1_base_view_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae8d95c7edd67af55ac4cff5119c3b57a" name="ae8d95c7edd67af55ac4cff5119c3b57a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8d95c7edd67af55ac4cff5119c3b57a">&#9670;&#160;</a></span>CustomPinViewModel()</h2>
+<a id="a03844833900d585d5856f12597df380c" name="a03844833900d585d5856f12597df380c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03844833900d585d5856f12597df380c">&#9670;&#160;</a></span>CustomPinViewModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +196,13 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Action&lt; <a class="el" href="class_arduino___w_p_f_1_1_view_models_1_1_custom_pin_view_model.html">CustomPinViewModel</a> &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_arduino___w_p_f_1_1_models_1_1_c_o_m.html">COM</a>&#160;</td>
+          <td class="paramname"><em>com</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; object &gt;&#160;</td>
           <td class="paramname"><em>OnClickExitButton</em>&#160;</td>
         </tr>
         <tr>
