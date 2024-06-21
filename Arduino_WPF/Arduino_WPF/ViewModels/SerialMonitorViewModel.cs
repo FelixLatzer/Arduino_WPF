@@ -88,11 +88,11 @@ public class SerialMonitorViewModel : BaseViewModel
         var jsonObjects = _com.ExtractJsonObjects(ref json);
         foreach (var jsonObject in jsonObjects)
         {
-            if (jsonObject.ContainsKey("id") && jsonObject.ContainsKey("mode") && jsonObject.ContainsKey("state"))
+            if (jsonObject.ContainsKey("Id") && jsonObject.ContainsKey("Mode") && jsonObject.ContainsKey("State"))
             {
-                int id = jsonObject["id"].Value<int>();
-                PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), jsonObject["mode"].Value<string>(), true);
-                State state = (State)jsonObject["state"].Value<int>();
+                int id = jsonObject["Id"].Value<int>();
+                PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), jsonObject["Mode"].Value<string>(), true);
+                State state = (State)jsonObject["State"].Value<int>();
             }
         }
     }
