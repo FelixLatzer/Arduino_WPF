@@ -24,6 +24,9 @@ public class SerialReader : INotifyPropertyChanged
 
     private COM _com;
 
+    /// <summary>
+    /// This property holds the last received pin configuration.
+    /// </summary>
     private Pin _lastReceivedPinConfig;
     public Pin LastReceivedPinConfig
     {
@@ -35,6 +38,9 @@ public class SerialReader : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// This property holds the serial output.
+    /// </summary>
     private string _serialOutput;
     public string SerialOutput
     {
@@ -46,6 +52,10 @@ public class SerialReader : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// This is the constructor of the SerialReader class.
+    /// </summary>
+    /// <param name="com"></param>
     public SerialReader(COM com)
     {
         _com = com;

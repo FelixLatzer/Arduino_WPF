@@ -81,37 +81,4 @@ public class SerialMonitorViewModel : BaseViewModel
             MessageBox.Show("No data to copy.");
         }
     }
-
-    ///// <summary>
-    ///// Reads the pin configuration from the COM port.
-    ///// </summary>
-    //private void ReadPinConfigurationFromCOM()
-    //{
-    //    if (_com != null)
-    //    {
-    //        string data = _com.ReadSerialOutput();
-    //        if (!string.IsNullOrEmpty(data))
-    //        {
-    //            ParseJsonConfiguration(data);
-    //        }
-    //    }
-    //}
-
-    ///// <summary>
-    ///// This method refreshes the pins.
-    ///// </summary>
-    //private void RefreshPins()
-    //{
-    //    if (_com == null)
-    //    {
-    //        MessageBox.Show("Please open a connection first.");
-    //        return;
-    //    }
-
-    //    var readPinConfiguration = _com.ReadPinConfiguration();
-    //    if (!string.IsNullOrEmpty(readPinConfiguration))
-    //    {
-    //        ParseJsonConfiguration(readPinConfiguration);
-    //    }
-    //}
 }

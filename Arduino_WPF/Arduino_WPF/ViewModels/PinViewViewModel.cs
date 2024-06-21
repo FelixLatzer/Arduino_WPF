@@ -23,6 +23,11 @@ public class PinViewViewModel : BaseViewModel
 
     private SerialReader _serialReader;
 
+    /// <summary>
+    /// This is the constructor of the PinViewViewModel class.
+    /// </summary>
+    /// <param name="com"></param>
+    /// <param name="reader"></param>
     public PinViewViewModel(COM com, SerialReader reader)
     {
         AddPinCommand = new RelayCommandWithParameter(AddPin);
@@ -31,6 +36,11 @@ public class PinViewViewModel : BaseViewModel
         _serialReader.PropertyChanged += SerialReaderPropertyChanged;
     }
 
+    /// <summary>
+    /// This method is called when the SerialReader property changes.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void SerialReaderPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(_serialReader.LastReceivedPinConfig))
@@ -39,6 +49,10 @@ public class PinViewViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This method changes the pin if it is opened.
+    /// </summary>
+    /// <param name="receivedPinConfig"></param>
     private void ChangePinIfOpened(Pin receivedPinConfig)
     {
         foreach (var pin in  Pins)

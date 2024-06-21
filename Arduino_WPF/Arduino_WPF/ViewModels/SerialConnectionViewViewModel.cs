@@ -323,7 +323,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// 
+    /// This method sets the selected preset configuration.
     /// </summary>
     /// <param name="presetConfiguration"></param>
     private void SetSelectedPresetConfiguration(PresetJsonLoader presetConfiguration)

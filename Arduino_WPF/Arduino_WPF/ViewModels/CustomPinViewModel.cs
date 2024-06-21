@@ -108,6 +108,9 @@ public class CustomPinViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This property gets if the pin is input.
+    /// </summary>
     private bool _isPinInput;
     public bool IsPinInput
     {

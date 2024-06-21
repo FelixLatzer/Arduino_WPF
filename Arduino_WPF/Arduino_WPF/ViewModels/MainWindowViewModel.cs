@@ -18,6 +18,9 @@ public class MainWindowViewModel : BaseViewModel
     private PinViewViewModel _pinViewModel {  get; set; }
 
 
+    /// <summary>
+    /// This is the getter and setter of the SelectedViewModel property.
+    /// </summary>
     private object _selectedViewModel;
     public object SelectedViewModel
     {
@@ -33,6 +36,9 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// This is the constructor of the MainWindowViewModel class.
+    /// </summary>
     public MainWindowViewModel()
     {
         ShowComConfigurationViewCommand = new RelayCommand(ShowSerialConnectionView);
@@ -41,11 +47,17 @@ public class MainWindowViewModel : BaseViewModel
         SelectedViewModel = _serialConnectionViewViewModel;
     }
 
+    /// <summary>
+    /// This method shows the serial connection view.
+    /// </summary>
     private void ShowSerialConnectionView()
     {
         SelectedViewModel = _serialConnectionViewViewModel;
     }
 
+    /// <summary>
+    /// This method shows the pin view.
+    /// </summary>
     private void ShowPinView()
     {
         if (_serialConnectionViewViewModel.SerialReader is null)
