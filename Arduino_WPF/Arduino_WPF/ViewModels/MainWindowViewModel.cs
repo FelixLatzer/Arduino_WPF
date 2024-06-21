@@ -38,7 +38,6 @@ public class MainWindowViewModel : BaseViewModel
         ShowComConfigurationViewCommand = new RelayCommand(ShowSerialConnectionView);
         ShowPinViewCommand = new RelayCommand(ShowPinView);
         _serialConnectionViewViewModel = new SerialConnectionViewViewModel();
-        _pinViewModel = new PinViewViewModel(_serialConnectionViewViewModel.COM);
         SelectedViewModel = _serialConnectionViewViewModel;
     }
 
@@ -49,6 +48,16 @@ public class MainWindowViewModel : BaseViewModel
 
     private void ShowPinView()
     {
+        if (_serialConnectionViewViewModel.SerialReader is null)
+        {
+            MessageBox.Show("Open com first");
+            return;
+        }
+        if (_pinViewModel is null)
+        {
+            _pinViewModel = new PinViewViewModel(_serialConnectionViewViewModel.COM, _serialConnectionViewViewModel.SerialReader);
+        }
+
         SelectedViewModel = _pinViewModel;
         _pinViewModel.COM = _serialConnectionViewViewModel.COM;
     }

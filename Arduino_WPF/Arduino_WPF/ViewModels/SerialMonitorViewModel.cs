@@ -3,6 +3,7 @@ using Arduino_WPF.Utils;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Arduino_WPF.ViewModels;
 public class SerialMonitorViewModel : BaseViewModel
 {
     private COM _com;
+    private SerialReader _reader;
 
     /// <summary>
     /// Gets or sets the serial output.
@@ -34,32 +36,21 @@ public class SerialMonitorViewModel : BaseViewModel
     public ICommand ClearSerialOutputCommand { get; }
     public ICommand CopyResultToClipboardCommand { get; }
 
-    public SerialMonitorViewModel(COM com)
+    public SerialMonitorViewModel(COM com, SerialReader serialReader)
     {
         _com = com;
+        _reader = serialReader;
+        _reader.PropertyChanged += SerialReaderPropertyChanged;
         ClearSerialOutputCommand = new RelayCommand(ClearSerialOutput);
         CopyResultToClipboardCommand = new RelayCommand(CopyResultToClipboard);
-        Task.Run(ReadSerialLoop);
+        
     }
 
-    /// <summary>
-    /// This method reads the serial output in a loop.
-    /// </summary>
-    /// <returns> Task </returns>
-    private async Task ReadSerialLoop()
+    public void SerialReaderPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        while (true)
+        if (e.PropertyName == nameof(_reader.SerialOutput))
         {
-            if (_com != null)
-            {
-                string output = _com.ReadSerialOutput();
-                if (!string.IsNullOrEmpty(output))
-                {
-                    SerialOutput += output;
-                    ParseJsonConfiguration(output);
-                }
-            }
-            await Task.Delay(100);
+            SerialOutput = _reader.SerialOutput;
         }
     }
 
@@ -68,7 +59,7 @@ public class SerialMonitorViewModel : BaseViewModel
     /// </summary>
     public void ClearSerialOutput()
     {
-        SerialOutput = string.Empty;
+        _reader.SerialOutput = string.Empty;
 
         if (_com != null)
         {
@@ -91,59 +82,36 @@ public class SerialMonitorViewModel : BaseViewModel
         }
     }
 
-    /// <summary>
-    /// Parses the JSON configuration.
-    /// </summary>
-    /// <param name="json"></param>
-    private void ParseJsonConfiguration(string json)
-    {
-        if (_com == null)
-        {
-            return;
-        }
+    ///// <summary>
+    ///// Reads the pin configuration from the COM port.
+    ///// </summary>
+    //private void ReadPinConfigurationFromCOM()
+    //{
+    //    if (_com != null)
+    //    {
+    //        string data = _com.ReadSerialOutput();
+    //        if (!string.IsNullOrEmpty(data))
+    //        {
+    //            ParseJsonConfiguration(data);
+    //        }
+    //    }
+    //}
 
-        var jsonObjects = _com.ExtractJsonObjects(ref json);
-        foreach (var jsonObject in jsonObjects)
-        {
-            if (jsonObject.ContainsKey("Id") && jsonObject.ContainsKey("Mode") && jsonObject.ContainsKey("State"))
-            {
-                int id = jsonObject["Id"].Value<int>();
-                PinMode pinMode = (PinMode)Enum.Parse(typeof(PinMode), jsonObject["Mode"].Value<string>(), true);
-                State state = (State)jsonObject["State"].Value<int>();
-            }
-        }
-    }
+    ///// <summary>
+    ///// This method refreshes the pins.
+    ///// </summary>
+    //private void RefreshPins()
+    //{
+    //    if (_com == null)
+    //    {
+    //        MessageBox.Show("Please open a connection first.");
+    //        return;
+    //    }
 
-    /// <summary>
-    /// Reads the pin configuration from the COM port.
-    /// </summary>
-    private void ReadPinConfigurationFromCOM()
-    {
-        if (_com != null)
-        {
-            string data = _com.ReadSerialOutput();
-            if (!string.IsNullOrEmpty(data))
-            {
-                ParseJsonConfiguration(data);
-            }
-        }
-    }
-
-    /// <summary>
-    /// This method refreshes the pins.
-    /// </summary>
-    private void RefreshPins()
-    {
-        if (_com == null)
-        {
-            MessageBox.Show("Please open a connection first.");
-            return;
-        }
-
-        var readPinConfiguration = _com.ReadPinConfiguration();
-        if (!string.IsNullOrEmpty(readPinConfiguration))
-        {
-            ParseJsonConfiguration(readPinConfiguration);
-        }
-    }
+    //    var readPinConfiguration = _com.ReadPinConfiguration();
+    //    if (!string.IsNullOrEmpty(readPinConfiguration))
+    //    {
+    //        ParseJsonConfiguration(readPinConfiguration);
+    //    }
+    //}
 }

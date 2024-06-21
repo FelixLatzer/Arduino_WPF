@@ -16,6 +16,8 @@ public class SerialConnectionViewViewModel : BaseViewModel
 {
     public ObservableCollection<string> AvailablePorts { get; private set; }
 
+    public SerialReader SerialReader;
+
     /// <summary>
     /// Gets or sets the baud rate of the serial connection.
     /// </summary>
@@ -206,6 +208,8 @@ public class SerialConnectionViewViewModel : BaseViewModel
             {
                 COM.OpenConnection();
                 MessageBox.Show($"Connection to {COM.Port} opened.");
+                SerialReader = new SerialReader(COM);
+                Task.Run(SerialReader.ReadSerialLoop);
             }
             catch (Exception ex)
             {
@@ -256,7 +260,7 @@ public class SerialConnectionViewViewModel : BaseViewModel
             MessageBox.Show("Open com first!");
             return;
         }
-        var serialMonitor = new SerialMonitorWindow(parameter as COM);
+        var serialMonitor = new SerialMonitorWindow(parameter as COM, SerialReader);
         serialMonitor.Show();
     }
 

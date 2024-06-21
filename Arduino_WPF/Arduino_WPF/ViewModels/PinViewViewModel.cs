@@ -3,6 +3,7 @@ using Arduino_WPF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,10 +21,36 @@ public class PinViewViewModel : BaseViewModel
 
     public COM COM { get; set; }
 
-    public PinViewViewModel(COM com)
+    private SerialReader _serialReader;
+
+    public PinViewViewModel(COM com, SerialReader reader)
     {
         AddPinCommand = new RelayCommandWithParameter(AddPin);
         COM = com;
+        _serialReader = reader;
+        _serialReader.PropertyChanged += SerialReaderPropertyChanged;
+    }
+
+    private void SerialReaderPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(_serialReader.LastReceivedPinConfig))
+        {
+            ChangePinIfOpened(_serialReader.LastReceivedPinConfig);
+        }
+    }
+
+    private void ChangePinIfOpened(Pin receivedPinConfig)
+    {
+        foreach (var pin in  Pins)
+        {
+            if (pin.ID == receivedPinConfig.Id)
+            {
+                pin.PinMode = receivedPinConfig.Mode;
+                pin.SelectedPinMode = receivedPinConfig.Mode;
+                pin.State = receivedPinConfig.State;
+                pin.SelectedState = receivedPinConfig.State;
+            }
+        }
     }
 
     /// <summary>
@@ -31,12 +58,6 @@ public class PinViewViewModel : BaseViewModel
     /// </summary>
     private void AddPin(object parameter)
     {
-        if (COM is null)
-        {
-            MessageBox.Show("Connect to a COM first!");
-            return;
-        }
-
         bool isSuccess = int.TryParse(parameter as string, out var pinId);
 
         if (!isSuccess)

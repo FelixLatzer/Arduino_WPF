@@ -200,5 +200,6 @@ public class CustomPinViewModel : BaseViewModel
         _com.WriteSerialOutput($"[{pinDataJson}]");
 
         OnPropertyChanged(nameof(LastRefreshText));
+
     }
 }

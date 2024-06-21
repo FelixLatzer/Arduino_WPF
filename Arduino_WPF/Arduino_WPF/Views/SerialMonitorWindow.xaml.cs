@@ -1,4 +1,5 @@
 ﻿using Arduino_WPF.Models;
+using Arduino_WPF.Utils;
 using Arduino_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,10 @@ namespace Arduino_WPF.Views;
 /// </summary>
 public partial class SerialMonitorWindow : Window
 {
-    public SerialMonitorWindow(COM com)
+    public SerialMonitorWindow(COM com, SerialReader reader)
     {
         InitializeComponent();
 
-        DataContext = new SerialMonitorViewModel(com);
+        DataContext = new SerialMonitorViewModel(com, reader);
     }
 }
